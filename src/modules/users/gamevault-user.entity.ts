@@ -21,12 +21,12 @@ import { Role } from "./models/role.enum";
 export class GamevaultUser extends DatabaseEntity {
   @Index({ unique: true })
   @Column({ unique: true })
-  @ApiProperty({ example: "JohnDoe", description: "username of the user" })
+  @ApiProperty({ example: "JohnDoe", description: "用户名" })
   username: string;
 
   @Column({ select: false })
   @ApiProperty({
-    description: "encrypted password of the user",
+    description: "用户的加密密码",
     example: "Hunter2",
   })
   password: string;
@@ -35,7 +35,7 @@ export class GamevaultUser extends DatabaseEntity {
   @Column({ select: false, unique: true, length: 64 })
   @ApiPropertyOptional({
     description:
-      "the user's api_key can be used for authentication with the server (e.g. api-key auth / websocket protocol).",
+      "用户的 API 密钥，可用于服务器认证（例如 API 密钥认证 / WebSocket 协议）",
     example: "fd9c4f417fb494aeacef28a70eba95128d9f2521374852cdb12ecb746888b892",
   })
   api_key?: string;
@@ -49,7 +49,7 @@ export class GamevaultUser extends DatabaseEntity {
   @JoinColumn()
   @ApiPropertyOptional({
     type: () => Media,
-    description: "the user's avatar image",
+    description: "用户的头像图片",
   })
   avatar?: Media;
 
@@ -62,46 +62,46 @@ export class GamevaultUser extends DatabaseEntity {
   @JoinColumn()
   @ApiPropertyOptional({
     type: () => Media,
-    description: "the user's profile background image",
+    description: "用户的个人资料背景图片",
   })
   background?: Media;
 
   @Column({ unique: true, nullable: true })
   @ApiProperty({
     example: "john.doe@mail.com",
-    description: "email address of the user",
+    description: "用户的邮箱地址",
   })
   email: string;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
     example: "John",
-    description: "first name of the user",
+    description: "名",
   })
   first_name?: string;
 
   @Column({ nullable: true })
-  @ApiPropertyOptional({ example: "Doe", description: "last name of the user" })
+  @ApiPropertyOptional({ example: "Doe", description: "姓" })
   last_name?: string;
 
   @Index()
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "birthday of the user",
+    description: "用户的生日",
     example: "2013-09-17T00:00:00.000Z",
   })
   birth_date?: Date;
 
   @Column({ default: false })
   @ApiProperty({
-    description: "indicates if the user is activated",
+    description: "指示用户是否已激活",
     example: false,
   })
   activated: boolean;
 
   @OneToMany(() => Progress, (progress) => progress.user)
   @ApiPropertyOptional({
-    description: "progresses of the user",
+    description: "用户的游戏进度列表",
     type: () => Progress,
     isArray: true,
   })
@@ -117,13 +117,13 @@ export class GamevaultUser extends DatabaseEntity {
     enum: Role,
     example: Role.EDITOR,
     description:
-      "The role determines the set of permissions and access rights for a user in the system.",
+      "角色决定了用户在系统中的权限集合和访问权限。",
   })
   role: Role;
 
   @OneToMany(() => Media, (media) => media.uploader)
   @ApiPropertyOptional({
-    description: "media uploaded by this user",
+    description: "该用户上传的媒体",
     type: () => Media,
     isArray: true,
   })
@@ -131,7 +131,7 @@ export class GamevaultUser extends DatabaseEntity {
 
   @OneToMany(() => Session, (session) => session.user)
   @ApiPropertyOptional({
-    description: "sessions of the user",
+    description: "用户的会话列表",
     type: () => Session,
     isArray: true,
   })
@@ -150,7 +150,7 @@ export class GamevaultUser extends DatabaseEntity {
     },
   })
   @ApiPropertyOptional({
-    description: "games bookmarked by this user",
+    description: "该用户收藏的游戏",
     type: () => GamevaultGame,
     isArray: true,
   })

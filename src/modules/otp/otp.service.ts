@@ -42,10 +42,10 @@ export class OtpService {
   async get(otp: string, response: Response): Promise<StreamableFile> {
     const existingOtp = this.otps.get(otp);
     if (!existingOtp) {
-      throw new UnauthorizedException("Invalid OTP");
+      throw new UnauthorizedException("无效的 OTP");
     }
     if (existingOtp.expiresAt < new Date(Date.now())) {
-      throw new UnauthorizedException("Expired OTP");
+      throw new UnauthorizedException("OTP 已过期");
     }
     this.logger.log("OTP Validated.", existingOtp.getLoggableData());
     this.otps.delete(otp);

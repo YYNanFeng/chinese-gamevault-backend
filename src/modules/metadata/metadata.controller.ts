@@ -24,7 +24,7 @@ export class MetadataController {
 
   @Get("/providers")
   @ApiOperation({
-    summary: "Get a list of all registered metadata providers.",
+    summary: "获取所有已注册的元数据提供者列表",
     operationId: "getProviders",
   })
   @MinimumRole(Role.EDITOR)
@@ -35,7 +35,7 @@ export class MetadataController {
 
   @Get("/providers/:provider_slug/search")
   @ApiOperation({
-    summary: "Search for games using a metadata provider.",
+    summary: "使用元数据提供者搜索游戏",
     operationId: "getSearchResultsByProvider",
   })
   @ApiQuery({

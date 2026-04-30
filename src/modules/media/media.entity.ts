@@ -10,7 +10,7 @@ export class Media extends DatabaseEntity {
   @ApiPropertyOptional({
     example:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Grand_Theft_Auto_logo_series.svg",
-    description: "the original source URL of the media",
+    description: "媒体的原始来源 URL",
     pattern: "url",
   })
   source_url?: string;
@@ -19,14 +19,14 @@ export class Media extends DatabaseEntity {
   @Index({ unique: true })
   @ApiPropertyOptional({
     example: "/media/6e6ae60b-7102-4501-ba69-62bd6419b2e0.jpg",
-    description: "the path of the media on the filesystem",
+    description: "媒体在文件系统上的路径",
   })
   file_path?: string;
 
   @Column()
   @ApiPropertyOptional({
     example: "image/jpeg",
-    description: "the media type of the media on the filesystem",
+    description: "文件系统上媒体的媒体类型",
   })
   type: string;
 
@@ -34,7 +34,7 @@ export class Media extends DatabaseEntity {
     nullable: true,
   })
   @ApiPropertyOptional({
-    description: "the uploader of the media",
+    description: "媒体的上传者",
     type: () => GamevaultUser,
   })
   uploader?: GamevaultUser;

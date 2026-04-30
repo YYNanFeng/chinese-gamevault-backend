@@ -4,6 +4,6 @@ import { IsNotEmpty, IsNumberString } from "class-validator";
 export class GameIdDto {
   @IsNumberString()
   @IsNotEmpty()
-  @ApiProperty({ example: "1", description: "id of the game" })
+  @ApiProperty({ example: "1", description: "游戏 ID" })
   game_id: number;
 }

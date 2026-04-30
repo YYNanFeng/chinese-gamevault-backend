@@ -117,7 +117,7 @@ export class UsersService implements OnApplicationBootstrap {
         relationLoadStrategy: "query",
       })
       .catch((error) => {
-        throw new NotFoundException(`User with id ${id} was not found.`, {
+        throw new NotFoundException(`未找到 ID 为 ${id} 的用户。`, {
           cause: error,
         });
       });
@@ -149,7 +149,7 @@ export class UsersService implements OnApplicationBootstrap {
       })
       .catch((error) => {
         throw new NotFoundException(
-          `User with username ${username} was not found on the server.`,
+          `服务器上未找到用户名为 ${username} 的用户。`,
           {
             cause: error,
           },
@@ -232,11 +232,11 @@ export class UsersService implements OnApplicationBootstrap {
       .catch((error) => {
         if (error instanceof EntityNotFoundError) {
           throw new UnauthorizedException(
-            `Authentication Failed: User not found. If you are a new user, please register first.`,
+            `认证失败：用户未找到。如果您是新用户，请先注册。`,
           );
         }
         throw new UnauthorizedException(
-          "Authentication Failed: Contact an Administrator to check the server logs for more information.",
+          "认证失败：请联系管理员检查服务器日志以获取更多信息。",
           {
             cause: error,
           },
@@ -244,12 +244,12 @@ export class UsersService implements OnApplicationBootstrap {
       });
     if (user.deleted_at) {
       throw new UnauthorizedException(
-        "Authentication Failed: User has been deleted. Contact an Administrator to recover the User.",
+        "认证失败：用户已被删除。请联系管理员恢复该用户。",
       );
     }
     if (!user.activated && user.role !== Role.ADMIN) {
       throw new NotAcceptableException(
-        "Authorization Failed: User is not activated. Contact an Administrator to activate the User.",
+        "授权失败：用户未激活。请联系管理员激活该用户。",
       );
     }
     return user;
@@ -382,7 +382,7 @@ export class UsersService implements OnApplicationBootstrap {
       !isAdmin
     ) {
       throw new ForbiddenException(
-        "You are too young to update your birth date. Contact an Administrator to update your birth date.",
+        "您的年龄太小，无法修改出生日期。请联系管理员修改您的出生日期。",
       );
     }
     user.birth_date = new Date(dto.birth_date);
@@ -435,7 +435,7 @@ export class UsersService implements OnApplicationBootstrap {
       return true;
     }
     if (!username) {
-      throw new UnauthorizedException("No Authorization provided");
+      throw new UnauthorizedException("未提供授权信息");
     }
     const user = await this.findOneByUserIdOrFail(userId);
     if (user.role === Role.ADMIN) {
@@ -546,7 +546,7 @@ export class UsersService implements OnApplicationBootstrap {
   ) {
     if (!username && !email) {
       throw new BadRequestException(
-        `Can't check if a user exists if neither username nor email is given.`,
+        `无法检查用户是否存在，未提供用户名或邮箱。`,
       );
     }
 
@@ -571,7 +571,7 @@ export class UsersService implements OnApplicationBootstrap {
           ? "username"
           : "email";
       throw new ForbiddenException(
-        `A user with this ${duplicateField} already exists. Please note, that they are case-insensitive.`,
+        `使用该${duplicateField === "username" ? "用户名" : "邮箱"}的用户已存在。请注意，该字段不区分大小写。`,
       );
     }
   }

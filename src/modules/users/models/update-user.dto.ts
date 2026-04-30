@@ -26,7 +26,7 @@ export class UpdateUserDto {
   @IsNotEmpty()
   @ApiPropertyOptional({
     example: "JohnDoe",
-    description: "username of the user",
+    description: "用户名",
   })
   username?: string;
 
@@ -35,7 +35,7 @@ export class UpdateUserDto {
   @IsNotEmpty()
   @ApiPropertyOptional({
     example: "john.doe@mail.com",
-    description: "email of the user",
+    description: "邮箱地址",
   })
   email?: string;
 
@@ -45,7 +45,7 @@ export class UpdateUserDto {
   @ApiPropertyOptional({
     example: "SecretPw822!",
     minLength: 8,
-    description: "password of the user",
+    description: "密码",
   })
   password?: string;
 
@@ -54,7 +54,7 @@ export class UpdateUserDto {
   @IsNotEmpty()
   @ApiPropertyOptional({
     example: "John",
-    description: "first name of the user",
+    description: "名",
   })
   first_name?: string;
 
@@ -63,7 +63,7 @@ export class UpdateUserDto {
   @IsNotEmpty()
   @ApiPropertyOptional({
     example: "Doe",
-    description: "last name of the user",
+    description: "姓",
   })
   last_name?: string;
 
@@ -72,7 +72,7 @@ export class UpdateUserDto {
   @IsDateString()
   @IsDateStringBeforeNow()
   @ApiPropertyOptional({
-    description: "date of birth of the user in ISO8601 format",
+    description: "用户的出生日期，ISO8601 格式",
   })
   birth_date?: string;
 
@@ -80,7 +80,7 @@ export class UpdateUserDto {
   @IsOptional()
   @ApiPropertyOptional({
     example: 69_420,
-    description: "id of the avatar image of the user",
+    description: "用户头像图片的 ID",
   })
   avatar_id?: number;
 
@@ -88,7 +88,7 @@ export class UpdateUserDto {
   @IsOptional()
   @ApiPropertyOptional({
     example: 69_420,
-    description: "id of the background image of the User",
+    description: "用户背景图片的 ID",
   })
   background_id?: number;
 
@@ -97,7 +97,7 @@ export class UpdateUserDto {
   @ApiPropertyOptional({
     pattern: "boolean",
     example: true,
-    description: "wether or not the user is activated. Not yet working.",
+    description: "用户是否已激活（暂未生效）",
   })
   activated?: boolean;
 
@@ -108,7 +108,7 @@ export class UpdateUserDto {
     enum: Role,
     example: Role.EDITOR,
     description:
-      "The role determines the set of permissions and access rights for a user in the system.",
+      "角色决定了用户在系统中的权限集合和访问权限。",
   })
   public role?: Role;
 }

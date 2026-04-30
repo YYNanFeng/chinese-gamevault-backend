@@ -24,7 +24,7 @@ export class TagMetadata extends DatabaseEntity implements Metadata {
   })
   @ApiProperty({
     description:
-      "slug (url-friendly name) of the provider. This is the primary identifier. Must be formatted like a valid slug.",
+      "提供商的 slug（URL 友好名称）。这是主要标识符，必须符合有效的 slug 格式。",
     example: "igdb",
   })
   provider_slug: string;
@@ -32,7 +32,7 @@ export class TagMetadata extends DatabaseEntity implements Metadata {
   @Column()
   @Index()
   @ApiProperty({
-    description: "id of the developer from the provider",
+    description: "提供商中的标签 ID",
     example: "1190",
   })
   provider_data_id: string;
@@ -41,13 +41,13 @@ export class TagMetadata extends DatabaseEntity implements Metadata {
   @Column()
   @ApiProperty({
     example: "battle-royale",
-    description: "name of the tag",
+    description: "标签名称",
   })
   name: string;
 
   @ManyToMany(() => GameMetadata, (game) => game.tags)
   @ApiPropertyOptional({
-    description: "games tagged with the tag",
+    description: "带有此标签的游戏",
     type: () => GameMetadata,
     isArray: true,
   })

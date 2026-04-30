@@ -20,7 +20,7 @@ export class RegisterUserDto {
   })
   @Length(2, 32)
   @IsNotEmpty()
-  @ApiProperty({ example: "JohnDoe", description: "username of the user" })
+  @ApiProperty({ example: "JohnDoe", description: "用户名" })
   username: string;
 
   @MinLength(8)
@@ -28,7 +28,7 @@ export class RegisterUserDto {
   @ApiProperty({
     example: "SecretPw822!",
     minLength: 8,
-    description: "password of the user",
+    description: "密码",
   })
   password: string;
 
@@ -37,7 +37,7 @@ export class RegisterUserDto {
   @IsNotEmpty()
   @ApiProperty({
     example: "john.doe@mail.com",
-    description: "email of the user",
+    description: "邮箱地址",
     required: configuration.USERS.REQUIRE_EMAIL,
   })
   email?: string;
@@ -47,7 +47,7 @@ export class RegisterUserDto {
   @MinLength(1)
   @ApiProperty({
     example: "John",
-    description: "first name of the user",
+    description: "名",
     required: configuration.USERS.REQUIRE_FIRST_NAME,
   })
   first_name?: string;
@@ -57,7 +57,7 @@ export class RegisterUserDto {
   @MinLength(1)
   @ApiProperty({
     example: "Doe",
-    description: "last name of the user",
+    description: "姓",
     required: configuration.USERS.REQUIRE_LAST_NAME,
   })
   last_name?: string;
@@ -70,7 +70,7 @@ export class RegisterUserDto {
   @IsDateStringBeforeNow()
   @IsNotEmpty()
   @ApiProperty({
-    description: "date of birth of the user in ISO8601 format",
+    description: "用户的出生日期，ISO8601 格式",
     required: configuration.PARENTAL.AGE_RESTRICTION_ENABLED,
   })
   birth_date?: string;

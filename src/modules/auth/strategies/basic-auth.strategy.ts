@@ -35,7 +35,7 @@ export class BasicAuthenticationStrategy extends PassportStrategy(
 
     if (!(await compare(password, user.password))) {
       throw new UnauthorizedException(
-        "Authentication Failed: Incorrect Password",
+        "认证失败：密码错误",
       );
     }
     return cleanedUser;

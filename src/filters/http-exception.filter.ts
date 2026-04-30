@@ -44,8 +44,8 @@ export class LoggingExceptionFilter implements ExceptionFilter {
       });
       response.status(httpStatusCode).json({
         message:
-          "Unhandled Server Error. Please check the server logs for more details.",
-        error: "Unhandled Server Error",
+          "未处理的服务器错误。请检查服务器日志以获取更多详情。",
+        error: "未处理的服务器错误",
         statusCode: httpStatusCode,
       });
     }

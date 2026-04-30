@@ -36,7 +36,7 @@ export class DatabaseService {
   async backup(password: string): Promise<StreamableFile> {
     if (this.config.TESTING.IN_MEMORY_DB) {
       throw new NotAcceptableException(
-        "This server can't backup its data as it uses an in-memory database.",
+        "此服务器使用内存数据库，无法备份数据。",
       );
     }
 
@@ -54,7 +54,7 @@ export class DatabaseService {
         }
       default:
         throw new InternalServerErrorException(
-          "This server's DB_SYSTEM environment variable is set to an unknown value.",
+          "此服务器的 DB_SYSTEM 环境变量设置为未知值。",
         );
     }
   }
@@ -82,7 +82,7 @@ export class DatabaseService {
         break;
       default:
         throw new InternalServerErrorException(
-          "This server's DB_SYSTEM environment variable is set to an unknown value.",
+          "此服务器的 DB_SYSTEM 环境变量设置为未知值。",
         );
     }
 
@@ -199,7 +199,7 @@ export class DatabaseService {
             error,
           });
           throw new InternalServerErrorException(
-            "Error restoring pre-restore PostgreSQL Database.",
+            "恢复预恢复的 PostgreSQL 数据库时出错。",
             { cause: error },
           );
         }
@@ -236,7 +236,7 @@ export class DatabaseService {
   private validatePassword(password: string) {
     if (this.config.DB.PASSWORD !== password) {
       throw new UnauthorizedException(
-        "The database password provided in the X-Database-Password Header is incorrect.",
+        "X-Database-Password 请求头中提供的数据库密码不正确。",
       );
     }
   }
@@ -265,7 +265,7 @@ export class DatabaseService {
 
   private handleBackupError(error: unknown) {
     this.logger.error({ message: "Error backing up database", error });
-    throw new InternalServerErrorException("Error backing up database.", {
+    throw new InternalServerErrorException("备份数据库时出错。", {
       cause: error,
     });
   }

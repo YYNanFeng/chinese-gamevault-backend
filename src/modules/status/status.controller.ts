@@ -15,7 +15,7 @@ export class StatusController {
   @Get()
   @ApiOkResponse({ type: () => Status })
   @ApiOperation({
-    summary: "returns the status of the server",
+    summary: "返回服务器状态",
     operationId: "getStatus",
   })
   @SkipGuards()

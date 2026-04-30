@@ -121,11 +121,11 @@ async function bootstrap(): Promise<void> {
       SwaggerModule.createDocument(
         app,
         new DocumentBuilder()
-          .setTitle("GameVault Backend Server")
+          .setTitle("GameVault 后端服务器")
           .setContact("Phalcode", "https://phalco.de", "contact@phalco.de")
           .setExternalDoc("Documentation", "https://gamevau.lt")
           .setDescription(
-            "Backend for GameVault, the self-hosted gaming platform for drm-free games",
+            "GameVault 后端，自托管的无 DRM 游戏平台",
           )
           .setVersion(configuration.SERVER.VERSION)
           .addBearerAuth(
@@ -134,7 +134,7 @@ async function bootstrap(): Promise<void> {
               scheme: "bearer",
               bearerFormat: "JWT",
               description:
-                "Access token obtained from /api/auth/*/login endpoint.",
+                "从 /api/auth/*/login 端点获取的访问令牌。",
             },
             "bearer",
           )
@@ -142,7 +142,7 @@ async function bootstrap(): Promise<void> {
             {
               type: "http",
               scheme: "basic",
-              description: "Basic Authentication",
+              description: "基本认证",
             },
             "basic",
           )
@@ -151,15 +151,15 @@ async function bootstrap(): Promise<void> {
               type: "apiKey",
               name: "X-Api-Key",
               in: "header",
-              description: "API-Key Authentication",
+              description: "API 密钥认证",
             },
             "apikey",
           )
           .addServer(
             `http://localhost:${configuration.SERVER.PORT}`,
-            "Local GameVault Server",
+            "本地 GameVault 服务器",
           )
-          .addServer(`https://demo.gamevau.lt`, "Demo GameVault Server")
+          .addServer(`https://demo.gamevau.lt`, "GameVault 演示服务器")
           .setLicense(
             "Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)",
             "https://github.com/Phalcode/gamevault-backend/LICENSE",
@@ -214,12 +214,12 @@ async function bootstrap(): Promise<void> {
     // Validate required HTTPS certificate paths
     if (!configuration.SERVER.HTTPS.KEY_PATH) {
       throw new Error(
-        "SERVER_HTTPS_KEY_PATH must be set when HTTPS is enabled.",
+        "启用 HTTPS 时必须设置 SERVER_HTTPS_KEY_PATH。",
       );
     }
     if (!configuration.SERVER.HTTPS.CERT_PATH) {
       throw new Error(
-        "SERVER_HTTPS_CERT_PATH must be set when HTTPS is enabled.",
+        "启用 HTTPS 时必须设置 SERVER_HTTPS_CERT_PATH。",
       );
     }
     const httpsOptions: Record<string, Buffer> = {

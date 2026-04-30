@@ -33,9 +33,9 @@ export class OAuth2Controller {
   @Get("login")
   @SkipGuards()
   @ApiOperation({
-    summary: "Performs an oauth2 login using the configured identity provider.",
+    summary: "使用配置的身份提供者进行 OAuth2 登录",
     description:
-      "Initiates a login process by redirecting to the identity provider for validating the user and issuing a bearer token.",
+      "通过重定向到身份提供者验证用户并签发 Bearer 令牌来发起登录流程。",
     operationId: "getAuthOauth2Login",
   })
   @ApiOkResponse({ type: () => TokenPairDto })

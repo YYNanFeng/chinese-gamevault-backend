@@ -38,9 +38,9 @@ export class GenreController {
    */
   @Get()
   @ApiOperation({
-    summary: "get a list of genres",
+    summary: "获取游戏类型列表",
     description:
-      "by default the list is sorted by the amount of games that are in each genre.",
+      "默认情况下，列表按每种类型包含的游戏数量排序。",
     operationId: "getGenres",
   })
   @MinimumRole(Role.GUEST)

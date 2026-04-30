@@ -57,7 +57,7 @@ export class ProgressController {
   /** Get an array of files to ignore for progress-tracking. */
   @Get("ignorefile")
   @ApiOperation({
-    summary: "get an array of files to ignore for progess-tracking",
+    summary: "获取进度跟踪的忽略文件列表",
     operationId: "getIgnoreFile",
   })
   @MinimumRole(Role.GUEST)
@@ -71,7 +71,7 @@ export class ProgressController {
   @PaginateQueryOptions()
   @ApiOkResponsePaginated(Progress)
   @ApiOperation({
-    summary: "get a list of progresses",
+    summary: "获取进度列表",
     operationId: "getProgresses",
   })
   @MinimumRole(Role.GUEST)
@@ -117,7 +117,7 @@ export class ProgressController {
   /** Get the progress of a specific game for a user. */
   @Get("/user/:user_id/game/:game_id")
   @ApiOperation({
-    summary: "get a specific game progress for a user",
+    summary: "获取用户的特定游戏进度",
     operationId: "getProgressByUserIdAndGameId",
   })
   @MinimumRole(Role.GUEST)
@@ -142,9 +142,9 @@ export class ProgressController {
   /** Deletes a progress for a user and game. */
   @Delete("/user/:user_id/game/:game_id")
   @ApiOperation({
-    summary: "delete a progress",
+    summary: "删除进度",
     description:
-      "Only admins or the user who is associated to the progress can delete it.",
+      "仅管理员或与该进度关联的用户可以删除进度。",
     operationId: "deleteProgressByUserIdAndGameId",
   })
   @ApiOkResponse({ type: () => Progress })
@@ -165,7 +165,7 @@ export class ProgressController {
   @Put("/user/:user_id/game/:game_id")
   @ApiBody({ type: () => UpdateProgressDto })
   @ApiOperation({
-    summary: "create or update a progress",
+    summary: "创建或更新进度",
     operationId: "putProgressByUserIdAndGameId",
   })
   @ApiOkResponse({ type: () => Progress })
@@ -189,7 +189,7 @@ export class ProgressController {
    */
   @Put("/user/:user_id/game/:game_id/increment")
   @ApiOperation({
-    summary: "Increment a specific game progress for a user by a minute",
+    summary: "按分钟递增用户的特定游戏进度",
     operationId: "putProgressByUserIdAndGameIdIncrementByOne",
   })
   @ApiOkResponse({ type: () => Progress })
@@ -211,7 +211,7 @@ export class ProgressController {
    */
   @Put("/user/:user_id/game/:game_id/increment/:minutes")
   @ApiOperation({
-    summary: "Increment a specific game progress for a user by x minutes",
+    summary: "按指定分钟数递增用户的特定游戏进度",
     operationId: "putProgressByUserIdAndGameIdIncrementByMinutes",
   })
   @ApiOkResponse({ type: () => Progress })

@@ -128,7 +128,7 @@ export class AuthenticationService implements OnModuleInit {
     });
 
     if (!session) {
-      throw new BadRequestException("Invalid or expired refresh token");
+      throw new BadRequestException("无效或已过期的刷新令牌");
     }
 
     // Generate new tokens
@@ -172,7 +172,7 @@ export class AuthenticationService implements OnModuleInit {
 
   async revoke(dto: RefreshTokenDto) {
     if (!dto.refresh_token) {
-      throw new BadRequestException("No refresh token provided");
+      throw new BadRequestException("未提供刷新令牌");
     }
 
     const refreshTokenHash = createHash("sha256")

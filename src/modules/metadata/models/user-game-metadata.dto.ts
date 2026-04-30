@@ -20,7 +20,7 @@ import { Media } from "../../media/media.entity";
 
 export class UpdateGameUserMetadataDto {
   @ApiPropertyOptional({
-    description: "the minimum age required to play the game",
+    description: "游戏的最低年龄要求",
     example: 18,
     default: 0,
   })
@@ -34,7 +34,7 @@ export class UpdateGameUserMetadataDto {
   @IsString()
   @IsNotEmpty()
   @ApiPropertyOptional({
-    description: "title of the game",
+    description: "游戏标题",
     example: "Grand Theft Auto V",
   })
   title?: string;
@@ -44,13 +44,13 @@ export class UpdateGameUserMetadataDto {
   @IsNotEmpty()
   @ApiPropertyOptional({
     description:
-      "sort title of the game, generated and used to optimize sorting.",
+      "游戏的排序标题，用于优化排序",
     example: "grand theft auto 5",
   })
   sort_title?: string;
 
   @ApiPropertyOptional({
-    description: "release date of the game as ISO8601 string",
+    description: "游戏的发布日期（ISO8601 格式）",
     example: "2013-09-17T00:00:00.000Z",
   })
   @IsOptional()
@@ -59,7 +59,7 @@ export class UpdateGameUserMetadataDto {
   release_date?: string;
 
   @ApiPropertyOptional({
-    description: "description of the game. markdown supported.",
+    description: "游戏描述，支持 Markdown 格式",
     example:
       "An open world action-adventure video game developed by **Rockstar North** and published by **Rockstar Games**.",
   })
@@ -70,7 +70,7 @@ export class UpdateGameUserMetadataDto {
 
   @ApiPropertyOptional({
     description:
-      "public notes from the admin for the game. markdown supported.",
+      "管理员对游戏的公开备注，支持 Markdown 格式",
     example: "# README \n Install other game first!",
   })
   @IsOptional()
@@ -79,7 +79,7 @@ export class UpdateGameUserMetadataDto {
   notes?: string;
 
   @ApiPropertyOptional({
-    description: "average playtime of other people in the game in minutes",
+    description: "其他玩家在该游戏中的平均游玩时间（分钟）",
     example: 180,
   })
   @IsInt()
@@ -92,7 +92,7 @@ export class UpdateGameUserMetadataDto {
   @Optional()
   @IsNotEmpty()
   @ApiPropertyOptional({
-    description: "cover/boxart image of the game",
+    description: "游戏的封面/包装图片",
     type: () => Media,
   })
   cover?: Media;
@@ -101,13 +101,13 @@ export class UpdateGameUserMetadataDto {
   @Optional()
   @IsNotEmpty()
   @ApiPropertyOptional({
-    description: "background image of the game",
+    description: "游戏的背景图片",
     type: () => Media,
   })
   background?: Media;
 
   @ApiPropertyOptional({
-    description: "rating of the provider",
+    description: "提供商的评分",
     example: 90,
   })
   @IsOptional()
@@ -118,7 +118,7 @@ export class UpdateGameUserMetadataDto {
   rating?: number;
 
   @ApiPropertyOptional({
-    description: "indicates if the game is in early access",
+    description: "指示该游戏是否处于抢先体验阶段",
     example: true,
   })
   @IsBoolean()
@@ -130,7 +130,7 @@ export class UpdateGameUserMetadataDto {
   @IsNotEmpty()
   @IsString()
   @ApiPropertyOptional({
-    description: "Predefined launch parameters for the game.",
+    description: "游戏的预设启动参数",
     example: "-fullscreen -dx11",
   })
   launch_parameters?: string;
@@ -139,7 +139,7 @@ export class UpdateGameUserMetadataDto {
   @IsNotEmpty()
   @IsString()
   @ApiPropertyOptional({
-    description: "Predefined launch executable for the game.",
+    description: "游戏的预设启动可执行文件",
     example: "ShooterGame.exe",
   })
   launch_executable?: string;
@@ -149,7 +149,7 @@ export class UpdateGameUserMetadataDto {
   @IsString()
   @ApiPropertyOptional({
     description:
-      "Predefined installer parameters for the game. You can use %INSTALLDIR% as a placeholder for the installation directory.",
+      "游戏的预设安装程序参数。可以使用 %INSTALLDIR% 作为安装目录的占位符。",
     example: '/D="%INSTALLDIR%" /S /DIR="%INSTALLDIR%" /SILENT',
   })
   installer_parameters?: string;
@@ -158,7 +158,7 @@ export class UpdateGameUserMetadataDto {
   @IsNotEmpty()
   @IsString()
   @ApiPropertyOptional({
-    description: "Predefined installer executable for the game.",
+    description: "游戏的预设安装可执行文件",
     example: "setup.exe",
   })
   installer_executable?: string;
@@ -167,7 +167,7 @@ export class UpdateGameUserMetadataDto {
   @IsNotEmpty()
   @IsString()
   @ApiPropertyOptional({
-    description: "Predefined uninstaller parameters for the game.",
+    description: "游戏的预设卸载程序参数",
     example: "/SILENT",
   })
   uninstaller_parameters?: string;
@@ -176,7 +176,7 @@ export class UpdateGameUserMetadataDto {
   @IsNotEmpty()
   @IsString()
   @ApiPropertyOptional({
-    description: "Predefined uninstaller executable for the game.",
+    description: "游戏的预设卸载可执行文件",
     example: "uninst.exe",
   })
   uninstaller_executable?: string;
@@ -187,7 +187,7 @@ export class UpdateGameUserMetadataDto {
   @NotContains(",", { each: true })
   @IsNotEmpty({ each: true })
   @ApiPropertyOptional({
-    description: "URLs of externally hosted screenshots of the game",
+    description: "游戏的外部托管截图 URL 列表",
     type: () => String,
     isArray: true,
   })
@@ -199,7 +199,7 @@ export class UpdateGameUserMetadataDto {
   @NotContains(",", { each: true })
   @IsNotEmpty({ each: true })
   @ApiPropertyOptional({
-    description: "URLs of externally hosted trailer videos of the game",
+    description: "游戏的外部托管预告片视频 URL 列表",
     type: () => String,
     isArray: true,
   })
@@ -211,7 +211,7 @@ export class UpdateGameUserMetadataDto {
   @NotContains(",", { each: true })
   @IsNotEmpty({ each: true })
   @ApiPropertyOptional({
-    description: "URLs of externally hosted gameplay videos of the game",
+    description: "游戏的外部托管实况视频 URL 列表",
     type: () => String,
     isArray: true,
   })
@@ -223,7 +223,7 @@ export class UpdateGameUserMetadataDto {
   @NotContains(",", { each: true })
   @IsNotEmpty({ each: true })
   @ApiPropertyOptional({
-    description: "URLs of websites of the game",
+    description: "游戏的网站 URL 列表",
     example: "https://www.escapefromtarkov.com/",
     type: () => String,
     isArray: true,
@@ -235,7 +235,7 @@ export class UpdateGameUserMetadataDto {
   @IsString({ each: true })
   @IsNotEmpty({ each: true })
   @ApiPropertyOptional({
-    description: "publishers of the game",
+    description: "游戏的发行商",
     type: () => String,
     isArray: true,
   })
@@ -246,7 +246,7 @@ export class UpdateGameUserMetadataDto {
   @IsString({ each: true })
   @IsNotEmpty({ each: true })
   @ApiPropertyOptional({
-    description: "developers of the game",
+    description: "游戏的开发商",
     type: () => String,
     isArray: true,
   })
@@ -257,7 +257,7 @@ export class UpdateGameUserMetadataDto {
   @IsString({ each: true })
   @IsNotEmpty({ each: true })
   @ApiPropertyOptional({
-    description: "tags of the game",
+    description: "游戏的标签",
     type: () => String,
     isArray: true,
   })
@@ -268,7 +268,7 @@ export class UpdateGameUserMetadataDto {
   @IsNotEmpty({ each: true })
   @IsOptional()
   @ApiPropertyOptional({
-    description: "genres of the game",
+    description: "游戏的类型",
     type: () => String,
     isArray: true,
   })

@@ -23,7 +23,7 @@ export class GamevaultGame extends DatabaseEntity {
   @Column({ unique: true })
   @ApiPropertyOptional({
     description:
-      "file path to the game or the game manifest (relative to root)",
+      "游戏或游戏清单的文件路径（相对于根目录）",
     example: "/files/Action/Grand Theft Auto V (v1.0.0).zip",
   })
   file_path?: string;
@@ -40,7 +40,7 @@ export class GamevaultGame extends DatabaseEntity {
     },
   })
   @ApiPropertyOptional({
-    description: "size of the game file in bytes",
+    description: "游戏文件的大小（字节）",
     example: "1234567890",
     type: () => String,
   })
@@ -48,7 +48,7 @@ export class GamevaultGame extends DatabaseEntity {
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "title of the game (extracted from the filename')",
+    description: "游戏标题（从文件名提取）",
     example: "Grand Theft Auto V",
   })
   title?: string;
@@ -56,14 +56,14 @@ export class GamevaultGame extends DatabaseEntity {
   @Column({ nullable: true })
   @ApiPropertyOptional({
     description:
-      "sort title of the game, generated and used to optimize sorting.",
+      "游戏的排序标题，用于优化排序",
     example: "grand theft auto 5",
   })
   sort_title?: string;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "version tag (extracted from the filename e.g. '(v1.0.0)')",
+    description: "版本标签（从文件名提取，例如 '(v1.0.0)'）",
     example: "v1.0.0",
   })
   version?: string;
@@ -72,7 +72,7 @@ export class GamevaultGame extends DatabaseEntity {
   @Column({ nullable: true })
   @ApiPropertyOptional({
     description:
-      "release date of the game (extracted from filename e.g. '(2013)')",
+      "游戏的发布日期（从文件名提取，例如 '(2013)'）",
     example: "2013-01-01T00:00:00.000Z",
   })
   release_date?: Date;
@@ -80,7 +80,7 @@ export class GamevaultGame extends DatabaseEntity {
   @Column({ default: false })
   @ApiPropertyOptional({
     description:
-      "indicates if the game is an early access title (extracted from filename e.g. '(EA)')",
+      "指示该游戏是否为抢先体验版本（从文件名提取，例如 '(EA)'）",
     example: true,
     default: false,
   })
@@ -89,7 +89,7 @@ export class GamevaultGame extends DatabaseEntity {
   @Column({ default: 0 })
   @ApiPropertyOptional({
     description:
-      "Indicates how many times the game has been downloaded on this server.",
+      "该游戏在本服务器上的下载次数",
     example: 10,
     default: 0,
   })
@@ -102,7 +102,7 @@ export class GamevaultGame extends DatabaseEntity {
   })
   @ApiPropertyOptional({
     description:
-      "type of the game, see https://gamevau.lt/docs/server-docs/game-types for all possible values",
+      "游戏类型，详见 https://gamevau.lt/docs/server-docs/game-types 了解所有可能的值",
     type: "string",
     enum: GameType,
     example: GameType.WINDOWS_PORTABLE,
@@ -122,7 +122,7 @@ export class GamevaultGame extends DatabaseEntity {
   })
   @ManyToMany(() => GameMetadata)
   @ApiPropertyOptional({
-    description: "metadata of various providers associated to the game",
+    description: "与游戏关联的各提供商元数据",
     type: () => GameMetadata,
     isArray: true,
   })
@@ -136,7 +136,7 @@ export class GamevaultGame extends DatabaseEntity {
   })
   @JoinColumn()
   @ApiPropertyOptional({
-    description: "user-defined metadata of the game",
+    description: "用户自定义的游戏元数据",
     type: () => GameMetadata,
   })
   user_metadata?: GameMetadata;
@@ -150,14 +150,14 @@ export class GamevaultGame extends DatabaseEntity {
   })
   @JoinColumn()
   @ApiPropertyOptional({
-    description: "effective and merged metadata of the game",
+    description: "游戏的有效合并元数据",
     type: () => GameMetadata,
   })
   metadata?: GameMetadata;
 
   @OneToMany(() => Progress, (progress) => progress.game)
   @ApiPropertyOptional({
-    description: "progresses associated to the game",
+    description: "与游戏关联的进度列表",
     type: () => Progress,
     isArray: true,
   })
@@ -165,7 +165,7 @@ export class GamevaultGame extends DatabaseEntity {
 
   @ManyToMany(() => GamevaultUser, (user) => user.bookmarked_games)
   @ApiPropertyOptional({
-    description: "users that bookmarked this game",
+    description: "收藏了该游戏的用户",
     type: () => GamevaultUser,
     isArray: true,
   })

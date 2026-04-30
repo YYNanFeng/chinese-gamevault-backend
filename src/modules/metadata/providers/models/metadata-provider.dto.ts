@@ -21,14 +21,14 @@ export class MetadataProviderDto {
   })
   @ApiProperty({
     description:
-      "slug (url-friendly name) of the provider. This is the primary identifier. Must be formatted like a valid slug.",
+      "提供商的 slug（URL 友好名称）。这是主要标识符，必须符合有效的 slug 格式。",
     example: "igdb",
   })
   public slug: string;
 
   @IsNotEmpty()
   @ApiProperty({
-    description: "display name of the provider.",
+    description: "提供商的显示名称",
     example: "IGDB",
   })
   public name: string;
@@ -38,14 +38,14 @@ export class MetadataProviderDto {
   @ApiProperty({
     type: Number,
     description:
-      "priority of usage for this provider. Lower priority providers are tried first, while higher priority providers fill in gaps.",
+      "此提供商的使用优先级。优先级较低的提供商会优先尝试，优先级较高的提供商用于填补空白。",
   })
   public priority: number;
 
   @IsBoolean()
   @ApiProperty({
     type: Boolean,
-    description: "whether this provider is enabled or not.",
+    description: "此提供商是否已启用",
     default: true,
   })
   public enabled = true;

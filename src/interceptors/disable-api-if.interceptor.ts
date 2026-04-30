@@ -22,7 +22,7 @@ export class DisableApiIfInterceptor implements NestInterceptor {
     );
 
     if (disabled) {
-      throw new MethodNotAllowedException("This API endpoint is disabled.");
+      throw new MethodNotAllowedException("此 API 端点已被禁用。");
     }
 
     return next.handle();

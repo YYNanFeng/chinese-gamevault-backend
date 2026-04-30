@@ -35,7 +35,7 @@ export class OAuth2Strategy extends PassportStrategy(Strategy, "oauth2", 6) {
       !AUTH.OAUTH2.CLIENT_SECRET
     ) {
       throw new BadRequestException(
-        "Failed to initialize OAuth2Strategy. Please configure all necessary options.",
+        "OAuth2 策略初始化失败。请配置所有必要的选项。",
       );
     }
     super({
@@ -123,7 +123,7 @@ export class OAuth2Strategy extends PassportStrategy(Strategy, "oauth2", 6) {
         profile,
       });
       throw new UnauthorizedException(
-        `Authentication Failed: Your identity provider did not provide all required fields to complete your registration. Missing fields: ${missingFields.join(", ")}.`,
+        `认证失败：您的身份提供者未提供所有必要字段以完成注册。缺少的字段：${missingFields.join(", ")}。`,
       );
     }
     return profile;
@@ -155,7 +155,7 @@ export class OAuth2Strategy extends PassportStrategy(Strategy, "oauth2", 6) {
         passportProfile: profile,
       });
       throw new UnauthorizedException(
-        "Authentication Failed: Missing access token or profile from the identity provider.",
+        "认证失败：身份提供者未返回访问令牌或用户资料。",
       );
     }
 

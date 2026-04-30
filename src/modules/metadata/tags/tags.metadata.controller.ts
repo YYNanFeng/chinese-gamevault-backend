@@ -38,9 +38,9 @@ export class TagsController {
    */
   @Get()
   @ApiOperation({
-    summary: "get a list of tags",
+    summary: "获取标签列表",
     description:
-      "by default the list is sorted by the amount of games that are tagged with each tag.",
+      "默认情况下，列表按每个标签关联的游戏数量排序。",
     operationId: "getTags",
   })
   @MinimumRole(Role.GUEST)

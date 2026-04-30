@@ -53,10 +53,10 @@ export class MetadataService {
 
     if (existingProvider) {
       const errorMessage =
-        `There is already a provider (${existingProvider.slug}) with the ` +
+        `已存在一个数据源 (${existingProvider.slug}) 具有相同的` +
         (provider.slug === existingProvider.slug
-          ? `same slug (${provider.slug})`
-          : `same priority (${provider.priority})`);
+          ? `标识符 (${provider.slug})`
+          : `优先级 (${provider.priority})`);
       throw new ConflictException(errorMessage);
     }
 
@@ -88,7 +88,7 @@ export class MetadataService {
    */
   getProviderBySlugOrFail(slug: string): MetadataProvider {
     if (!slug) {
-      throw new NotFoundException(`No slug provided.`);
+      throw new NotFoundException(`未提供标识符。`);
     }
 
     // Find the provider with the given slug.
@@ -97,7 +97,7 @@ export class MetadataService {
     // If no provider is found, throw a NotFoundException.
     if (!provider) {
       throw new ProviderNotFoundException(
-        `There is no registered provider with slug "${slug}".`,
+        `没有注册的标识符为 "${slug}" 的数据源。`,
       );
     }
 
@@ -162,7 +162,7 @@ export class MetadataService {
         message: "Corresponding metadata-job was not found",
         game: { id: game.id },
       });
-      throw new NotFoundException("Corresponding metadata-job was not found");
+      throw new NotFoundException("未找到对应的元数据任务");
     }
 
     this.logger.log({
@@ -294,7 +294,7 @@ export class MetadataService {
       });
       throw new InternalServerErrorException(
         error,
-        "Error searching provider. Please check the server logs for details.",
+        "搜索数据源时出错。请查看服务器日志获取详细信息。",
       );
     }
   }
@@ -629,7 +629,7 @@ export class MetadataService {
       // Re-throw with appropriate error message
       throw new InternalServerErrorException(
         error,
-        "Failed to map game to metadata provider. Please check the server logs for details.",
+        "将游戏映射到数据源失败。请查看服务器日志获取详细信息。",
       );
     }
   }

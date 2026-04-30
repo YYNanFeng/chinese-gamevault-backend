@@ -39,10 +39,10 @@ function getYamlConfiguration(): Record<string, unknown> | null {
         return yamlConfigurationCache;
       }
 
-      throw new Error("Configuration root must be a YAML mapping/object.");
+      throw new Error("配置根必须是 YAML 映射/对象。");
     } catch (error) {
       throw new Error(
-        `Failed to parse YAML configuration at \"${yamlPath}\": ${error instanceof Error ? error.message : String(error)}`,
+        `解析位于 "${yamlPath}" 的 YAML 配置失败：${error instanceof Error ? error.message : String(error)}`,
       );
     }
   }
@@ -123,7 +123,7 @@ function resolveEnv(name: string): string | undefined {
       return readFileSync(filePath, "utf-8").trim();
     } catch (error) {
       throw new Error(
-        `Failed to read Docker secret from ${name}_FILE="${filePath}": ${error instanceof Error ? error.message : String(error)}`,
+        `无法从 ${name}_FILE="${filePath}" 读取 Docker Secret：${error instanceof Error ? error.message : String(error)}`,
       );
     }
   }

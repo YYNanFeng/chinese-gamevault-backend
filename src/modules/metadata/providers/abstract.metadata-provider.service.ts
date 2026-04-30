@@ -124,7 +124,7 @@ export abstract class MetadataProvider
 
     // If no matching games are found, throw an exception.
     if (gameResults.length === 0) {
-      throw new NotFoundException("No matching games found.");
+      throw new NotFoundException("未找到匹配的游戏。");
     }
 
     // Map of game index (key) to probability (value).

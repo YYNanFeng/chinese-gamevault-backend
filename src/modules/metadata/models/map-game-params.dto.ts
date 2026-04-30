@@ -12,13 +12,13 @@ export class MapGameParamsDto implements ProviderSlugDto, GameIdDto {
   })
   @ApiProperty({
     description:
-      "slug (url-friendly name) of the provider. This is the primary identifier. Must be formatted like a valid slug.",
+      "提供商的 slug（URL 友好名称）。这是主要标识符，必须符合有效的 slug 格式。",
     example: "igdb",
   })
   provider_slug: string;
 
   @IsNumberString()
   @IsNotEmpty()
-  @ApiProperty({ example: "1", description: "id of the game" })
+  @ApiProperty({ example: "1", description: "游戏 ID" })
   game_id: number;
 }

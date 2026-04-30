@@ -67,7 +67,7 @@ export class GameMetadataService {
       });
     } catch (error) {
       throw new NotFoundException(
-        `GameMetadata with id ${id} was not found on the server.`,
+        `服务器上未找到 ID 为 ${id} 的游戏元数据。`,
         { cause: error },
       );
     }

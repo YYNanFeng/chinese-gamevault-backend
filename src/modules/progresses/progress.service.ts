@@ -51,7 +51,7 @@ export class ProgressService implements OnApplicationBootstrap {
       this.ignoreList = fileContent.split("\n").map((line) => line.trim());
     } catch (error) {
       throw new InternalServerErrorException(
-        "Error reading ignored-executables.txt file",
+        "读取 ignored-executables.txt 文件时出错",
         { cause: error },
       );
     }
@@ -91,7 +91,7 @@ export class ProgressService implements OnApplicationBootstrap {
       return await this.progressRepository.findOneOrFail(findParameters);
     } catch (error) {
       throw new NotFoundException(
-        `Progress with id ${id} was not found on the server.`,
+        `ID 为 ${id} 的进度在服务器上未找到。`,
         { cause: error },
       );
     }
@@ -235,7 +235,7 @@ export class ProgressService implements OnApplicationBootstrap {
     if (updateProgressDto.minutes_played != null) {
       if (progress.minutes_played > updateProgressDto.minutes_played) {
         throw new ConflictException(
-          `New value for "minutes_played" cannot be less than previous value: ${progress.minutes_played} minutes`,
+          `"minutes_played" 的新值不能小于之前的值：${progress.minutes_played} 分钟`,
         );
       }
       if (progress.minutes_played !== updateProgressDto.minutes_played) {

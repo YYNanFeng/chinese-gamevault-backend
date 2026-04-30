@@ -46,9 +46,9 @@ export class SavefileController {
 
   @Post("/user/:user_id/game/:game_id")
   @ApiOperation({
-    summary: "Upload a save file to the server",
+    summary: "上传存档文件到服务器",
     description:
-      "Only admins or the user who is associated to the savefile can upload a games save file. The savefile must be a .zip file. Installation ID is optional for multi-device tracking.",
+      "仅管理员或与存档关联的用户可以上传游戏存档文件。存档文件必须为 .zip 格式。安装 ID 可选，用于多设备跟踪。",
     operationId: "postSavefileByUserIdAndGameId",
   })
   @ApiHeader({
@@ -83,13 +83,13 @@ export class SavefileController {
         validators: [
           new MaxFileSizeValidator({
             maxSize: configuration.SAVEFILES.MAX_SIZE,
-            message: `File exceeds maximum allowed size of ${bytes(
+            message: `文件超过了最大允许大小 ${bytes(
               configuration.SAVEFILES.MAX_SIZE,
               {
                 unit: "MB",
                 thousandsSeparator: ".",
               },
-            )}.`,
+            )}。`,
           }),
           new FileTypeValidator({ fileType: "application/zip" }),
         ],
@@ -108,9 +108,9 @@ export class SavefileController {
 
   @Get("/user/:user_id/game/:game_id")
   @ApiOperation({
-    summary: "Download a save file from the server",
+    summary: "从服务器下载存档文件",
     description:
-      "Only admins or the user who is associated to the savefile can download a games save file.",
+      "仅管理员或与存档关联的用户可以下载游戏存档文件。",
     operationId: "getSaveFileByUserIdAndGameId",
   })
   @ApiOkResponse({
@@ -135,9 +135,9 @@ export class SavefileController {
 
   @Delete("/user/:user_id/game/:game_id")
   @ApiOperation({
-    summary: "Delete a save file from the server",
+    summary: "从服务器删除存档文件",
     description:
-      "Only admins or the user who is associated to the savefile can delete a games save file.",
+      "仅管理员或与存档关联的用户可以删除游戏存档文件。",
     operationId: "deleteSaveFileByUserIdAndGameId",
   })
   @DisableApiIf(

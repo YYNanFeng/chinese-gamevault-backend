@@ -54,7 +54,7 @@ export class ApiKeyGuard implements CanActivate {
       if (isWebsocketProtocol) {
         context.switchToWs().getClient<Socket>().emit("exception", {
           status: "error",
-          message: "Missing X-Api-Key Header.",
+          message: "缺少 X-Api-Key 请求头。",
         });
       }
       return true;
@@ -67,12 +67,12 @@ export class ApiKeyGuard implements CanActivate {
 
       if (user.deleted_at) {
         throw new UnauthorizedException(
-          "Authentication Failed: User has been deleted. Contact an Administrator to recover the User.",
+          "认证失败：用户已被删除。请联系管理员恢复该用户。",
         );
       }
       if (!user.activated && user.role !== Role.ADMIN) {
         throw new NotAcceptableException(
-          "Authorization Failed: User is not activated. Contact an Administrator to activate the User.",
+          "授权失败：用户未激活。请联系管理员激活该用户。",
         );
       }
 
@@ -98,13 +98,13 @@ export class ApiKeyGuard implements CanActivate {
       if (isWebsocketProtocol) {
         context.switchToWs().getClient<Socket>().emit("exception", {
           status: "error",
-          message: "Unauthorized",
+          message: "未授权",
         });
         return false;
       }
 
       throw new UnauthorizedException(
-        "Authentication Failed: Invalid API-Key. If you are a new user, please register first.",
+        "认证失败：无效的 API 密钥。如果您是新用户，请先注册。",
       );
     }
   }

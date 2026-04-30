@@ -43,7 +43,7 @@ export class UsersController {
   @Get()
   @ApiOperation({
     summary:
-      "get an overview of all users. admins can see hidden users using this endpoint aswell.",
+      "获取所有用户概览。管理员可通过此端点查看隐藏用户。",
     operationId: "getUsers",
   })
   @ApiOkResponse({ type: () => GamevaultUser, isArray: true })
@@ -60,7 +60,7 @@ export class UsersController {
   /** Retrieve own user information. */
   @Get("me")
   @ApiOperation({
-    summary: "get details of your user",
+    summary: "获取当前用户详情",
     operationId: "getUsersMe",
   })
   @MinimumRole(Role.GUEST)
@@ -75,7 +75,7 @@ export class UsersController {
   @Put("me")
   @ApiBody({ type: () => UpdateUserDto })
   @ApiOperation({
-    summary: "update details of your user",
+    summary: "更新当前用户详情",
     operationId: "putUsersMe",
   })
   @MinimumRole(Role.USER)
@@ -96,7 +96,7 @@ export class UsersController {
   /** Deletes your own user. */
   @Delete("me")
   @ApiOperation({
-    summary: "delete your own user",
+    summary: "删除自己的用户",
     operationId: "deleteUserMe",
   })
   @ApiOkResponse({ type: () => GamevaultUser })
@@ -110,7 +110,7 @@ export class UsersController {
 
   @Post("me/bookmark/:game_id")
   @ApiOperation({
-    summary: "bookmark a game",
+    summary: "收藏游戏",
     operationId: "postUsersMeBookmark",
   })
   @MinimumRole(Role.GUEST)
@@ -127,7 +127,7 @@ export class UsersController {
 
   @Delete("me/bookmark/:game_id")
   @ApiOperation({
-    summary: "unbookmark a game",
+    summary: "取消收藏游戏",
     operationId: "deleteUsersMeBookmark",
   })
   @MinimumRole(Role.GUEST)
@@ -145,7 +145,7 @@ export class UsersController {
   /** Get details on a user. */
   @Get(":user_id")
   @ApiOperation({
-    summary: "get details on a user",
+    summary: "获取用户详情",
     operationId: "getUserByUserId",
   })
   @MinimumRole(Role.GUEST)
@@ -168,7 +168,7 @@ export class UsersController {
   @Put(":user_id")
   @ApiBody({ type: () => UpdateUserDto })
   @ApiOperation({
-    summary: "update details of any user",
+    summary: "更新任意用户详情",
     operationId: "putUserByUserId",
   })
   @MinimumRole(Role.ADMIN)
@@ -194,7 +194,7 @@ export class UsersController {
   /** Deletes any user with the specified ID. */
   @Delete(":user_id")
   @ApiOperation({
-    summary: "delete any user",
+    summary: "删除任意用户",
     operationId: "deleteUserByUserId",
   })
   @ApiOkResponse({ type: () => GamevaultUser })
@@ -207,7 +207,7 @@ export class UsersController {
   @Post(":user_id/recover")
   @MinimumRole(Role.ADMIN)
   @ApiOperation({
-    summary: "recover a deleted user",
+    summary: "恢复已删除的用户",
     operationId: "postUserRecoverByUserId",
   })
   @ApiOkResponse({ type: () => GamevaultUser })

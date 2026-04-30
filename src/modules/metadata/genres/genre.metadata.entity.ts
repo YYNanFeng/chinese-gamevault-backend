@@ -24,14 +24,14 @@ export class GenreMetadata extends DatabaseEntity implements Metadata {
   })
   @ApiProperty({
     description:
-      "slug (url-friendly name) of the provider. This is the primary identifier. Must be formatted like a valid slug.",
+      "提供商的 slug（URL 友好名称）。这是主要标识符，必须符合有效的 slug 格式。",
     example: "igdb",
   })
   provider_slug: string;
   @Column()
   @Index()
   @ApiProperty({
-    description: "id of the developer from the provider",
+    description: "提供商中的类型 ID",
     example: "1190",
   })
   provider_data_id: string;
@@ -40,13 +40,13 @@ export class GenreMetadata extends DatabaseEntity implements Metadata {
   @Column()
   @ApiProperty({
     example: "Platformer",
-    description: "name of the genre",
+    description: "类型名称",
   })
   name: string;
 
   @ManyToMany(() => GameMetadata, (game) => game.genres)
   @ApiPropertyOptional({
-    description: "games of the genre",
+    description: "属于该类型的游戏",
     type: () => GameMetadata,
     isArray: true,
   })

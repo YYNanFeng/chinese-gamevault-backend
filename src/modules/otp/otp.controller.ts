@@ -12,7 +12,7 @@ export class OtpController {
   @Get("game")
   @ApiOkResponse({ type: () => StreamableFile })
   @ApiOperation({
-    summary: "returns a game download for the otp",
+    summary: "通过一次性密码返回游戏下载",
     operationId: "getOtpGame",
   })
   @SkipGuards()

@@ -34,7 +34,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
     const isRevoked = await this.authService.isTokenRevoked(token);
     if (isRevoked) {
       throw new UnauthorizedException(
-        "Authentication Failed: token has been revoked",
+        "认证失败：令牌已被撤销",
       );
     }
 

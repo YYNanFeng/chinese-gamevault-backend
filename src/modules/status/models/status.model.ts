@@ -6,20 +6,20 @@ import { StatusEnum } from "./status.enum";
 
 export class StatusEntry {
   @ApiProperty({
-    description: "Timestamp of the protocol entry",
+    description: "协议条目的时间戳",
     example: "2021-01-01T00:00:00.000Z",
   })
   timestamp: Date;
 
   @ApiProperty({
-    description: "Status that was set",
+    description: "设置的状态",
     type: "string",
     enum: StatusEnum,
     example: StatusEnum.UNHEALTHY,
   })
   status: StatusEnum;
   @ApiProperty({
-    description: "Reason for the status to be set",
+    description: "状态设置的原因",
     example: "Database disconnected.",
   })
   reason: string;
@@ -33,7 +33,7 @@ export class StatusEntry {
 
 export class Status {
   @ApiProperty({
-    description: "Current status of the server",
+    description: "服务器当前状态",
     type: "string",
     enum: StatusEnum,
     example: StatusEnum.HEALTHY,
@@ -41,19 +41,19 @@ export class Status {
   status: StatusEnum;
 
   @ApiProperty({
-    description: "Server's version",
+    description: "服务器版本",
     example: "1.0.0",
   })
   version?: string;
 
   @ApiProperty({
-    description: "Whether user registration is enabled",
+    description: "是否启用用户注册",
     example: true,
   })
   registration_enabled?: boolean;
 
   @ApiProperty({
-    description: "List of required registration fields",
+    description: "必填的注册字段列表",
     type: "string",
     enum: RegistrationFields,
     example: [RegistrationFields.BIRTH_DATE, RegistrationFields.EMAIL],
@@ -62,7 +62,7 @@ export class Status {
   required_registration_fields?: RegistrationFields[];
 
   @ApiProperty({
-    description: "List of available authentication methods",
+    description: "可用的认证方式列表",
     type: "string",
     enum: AuthenticationMethod,
     example: [AuthenticationMethod.BASIC, AuthenticationMethod.SSO],
@@ -71,13 +71,13 @@ export class Status {
   available_authentication_methods?: AuthenticationMethod[];
 
   @ApiPropertyOptional({
-    description: "Server's uptime in seconds (Only visible to admins)",
+    description: "服务器运行时间（秒）（仅管理员可见）",
     example: 300,
   })
   uptime?: number;
 
   @ApiPropertyOptional({
-    description: "Server's status protocol (Only visible to admins)",
+    description: "服务器状态协议（仅管理员可见）",
     type: () => StatusEntry,
     isArray: true,
   })

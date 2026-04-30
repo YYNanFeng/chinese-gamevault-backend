@@ -38,9 +38,9 @@ export class DeveloperController {
    */
   @Get()
   @ApiOperation({
-    summary: "get a list of developers",
+    summary: "获取开发商列表",
     description:
-      "by default the list is sorted by the amount of games that are developed by the developer.",
+      "默认情况下，列表按每个开发商开发的游戏数量排序。",
     operationId: "getDevelopers",
   })
   @MinimumRole(Role.GUEST)

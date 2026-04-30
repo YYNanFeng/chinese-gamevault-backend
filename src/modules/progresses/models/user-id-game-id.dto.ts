@@ -7,11 +7,11 @@ import { UserIdDto } from "../../users/models/user-id.dto";
 export class UserIdGameIdDto implements UserIdDto, GameIdDto {
   @IsNumberString()
   @IsNotEmpty()
-  @ApiProperty({ example: "1", description: "id of the user" })
+  @ApiProperty({ example: "1", description: "用户 ID" })
   user_id: number;
 
   @IsNumberString()
   @IsNotEmpty()
-  @ApiProperty({ example: "1", description: "id of the game" })
+  @ApiProperty({ example: "1", description: "游戏 ID" })
   game_id: number;
 }

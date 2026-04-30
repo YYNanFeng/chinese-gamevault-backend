@@ -384,7 +384,7 @@ export class GamesService {
     if (!game.file_path || (!game.title && !game.release_date)) {
       throw new InternalServerErrorException(
         game,
-        "Dupe-Checking Data not available in indexed game!",
+        "已索引的游戏中缺少用于重复检查的数据！",
       );
     }
 

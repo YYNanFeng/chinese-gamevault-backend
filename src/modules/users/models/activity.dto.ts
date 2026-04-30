@@ -6,13 +6,13 @@ import { ActivityState } from "./activity-state.enum";
 export class Activity {
   @IsEmpty()
   @ApiPropertyOptional({
-    description: "The id of the user this activity belongs to.",
+    description: "该活动所属用户的 ID",
   })
   user_id?: number;
 
   @IsEmpty()
   @ApiPropertyOptional({
-    description: "The socket id of the user this activity belongs to.",
+    description: "该活动所属用户的 Socket ID",
   })
   socket_id?: string;
 
@@ -20,13 +20,13 @@ export class Activity {
     type: "string",
     enum: ActivityState,
     example: ActivityState.PLAYING,
-    description: "The online-state to set the user to",
+    description: "要设置的在线状态",
   })
   @IsNotEmpty()
   state: ActivityState;
 
   @ApiPropertyOptional({
-    description: "The game's id. Only required if the state is 'PLAYING'.",
+    description: "游戏 ID，仅在状态为 'PLAYING' 时必填",
   })
   @IsOptional()
   @IsNotEmpty()

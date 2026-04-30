@@ -150,7 +150,7 @@ export class IgdbMetadataProviderService extends MetadataProvider {
 
     if (isEmpty(gameResult.data))
       throw new NotFoundException(
-        `Game with id ${provider_data_id} not found on IGDB.`,
+        `在 IGDB 上未找到 ID 为 ${provider_data_id} 的游戏。`,
       );
 
     const averagePlaytime = await this.fetchAveragePlaytime(

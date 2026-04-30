@@ -47,7 +47,7 @@ export class MediaController {
   /** Retrieve media by its ID and send it as the response. */
   @Get(":id")
   @ApiOperation({
-    summary: "Retrieve media using its id",
+    summary: "通过 ID 获取媒体文件",
     operationId: "getMediaByMediaId",
   })
   @ApiOkResponse({
@@ -67,9 +67,9 @@ export class MediaController {
 
   @Post()
   @ApiOperation({
-    summary: "Upload a media file to the server",
+    summary: "上传媒体文件到服务器",
     description:
-      "You can use the id of the uploaded media in subsequent requests.",
+      "您可以在后续请求中使用上传媒体的 ID。",
     operationId: "postMedia",
   })
   @ApiConsumes("multipart/form-data")
@@ -98,7 +98,7 @@ export class MediaController {
         validators: [
           new MaxFileSizeValidator({
             maxSize: configuration.MEDIA.MAX_SIZE,
-            message: `File exceeds maximum allowed size of ${bytes(configuration.MEDIA.MAX_SIZE, { unit: "MB", thousandsSeparator: "." })}.`,
+            message: `文件超过了最大允许大小 ${bytes(configuration.MEDIA.MAX_SIZE, { unit: "MB", thousandsSeparator: "." })}。`,
           }),
           new FileTypeValidator({ fileType: /^(image|video|audio)\/.*/ }),
         ],

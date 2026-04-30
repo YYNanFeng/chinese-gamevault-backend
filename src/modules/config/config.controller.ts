@@ -28,7 +28,7 @@ export class ConfigController {
   @Get("news")
   @ApiOkResponse({ type: () => Status })
   @ApiOperation({
-    summary: "returns the news.md file from the config directory.",
+    summary: "返回配置目录中的 news.md 文件",
     operationId: "getNews",
   })
   @MinimumRole(Role.GUEST)
@@ -44,7 +44,7 @@ export class ConfigController {
   @ApiBody({ type: () => UpdateNewsDto })
   @ApiOkResponse()
   @ApiOperation({
-    summary: "updates the news.md file in the config directory.",
+    summary: "更新配置目录中的 news.md 文件",
     operationId: "putNews",
   })
   @MinimumRole(Role.ADMIN)

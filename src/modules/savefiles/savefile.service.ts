@@ -56,7 +56,7 @@ export class SavefileService {
       executorUsername,
     );
     if (installationId && !isUUID(installationId, 4)) {
-      throw new BadRequestException("Installation ID must be a valid UUID v4.");
+      throw new BadRequestException("安装 ID 必须是有效的 UUID v4。");
     }
     await this.validate(file.buffer);
     await this.saveToFileSystem(
@@ -87,7 +87,7 @@ export class SavefileService {
     );
     if (!savefiles[0]) {
       throw new NotFoundException(
-        `Savefile for user ${userId} and game ${gameId} was not found.`,
+        `未找到用户 ${userId} 和游戏 ${gameId} 的存档文件。`,
       );
     }
     const path = savefiles[0];
@@ -193,7 +193,7 @@ export class SavefileService {
       return paths;
     } catch (error) {
       throw new NotFoundException(
-        `Savefile for user ${userId} and game ${gameId} was not found.`,
+        `未找到用户 ${userId} 和游戏 ${gameId} 的存档文件。`,
         {
           cause: error,
         },
@@ -259,13 +259,13 @@ export class SavefileService {
     if (!type?.extension || !type?.mimeType) {
       throw new BadRequestException(
         errorContextObject,
-        "File type could not be detected. Please use a different file.",
+        "无法检测文件类型，请使用其他文件。",
       );
     }
     if (type.mimeType != "application/zip") {
       throw new BadRequestException(
         errorContextObject,
-        `This file is a "${type.mimeType}", which is not supported.`,
+        `该文件是 "${type.mimeType}" 格式，不受支持。`,
       );
     }
   }

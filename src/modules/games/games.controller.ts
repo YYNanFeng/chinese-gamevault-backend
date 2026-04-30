@@ -80,7 +80,7 @@ export class GamesController {
 
   @Put("reindex")
   @ApiOperation({
-    summary: "manually triggers an index of all games",
+    summary: "手动触发所有游戏的索引",
     operationId: "putFilesReindex",
   })
   @ApiOkResponse({ type: () => GamevaultGame, isArray: true })
@@ -92,9 +92,9 @@ export class GamesController {
   /** Deletes a game file from disk. Admins only. */
   @Delete(":game_id")
   @ApiOperation({
-    summary: "deletes a game file from disk",
+    summary: "从磁盘删除游戏文件",
     description:
-      "Permanently deletes the physical game file from the filesystem. The file indexer will automatically detect the missing file and soft-delete the game from the database. Only administrators can use this endpoint. The server must have write permissions on the files volume.",
+      "永久从文件系统中删除游戏文件。文件索引器会自动检测缺失的文件并在数据库中软删除该游戏。仅管理员可使用此端点。服务器必须对文件卷具有写入权限。",
     operationId: "deleteGame",
   })
   @MinimumRole(Role.ADMIN)
@@ -106,8 +106,8 @@ export class GamesController {
   /** Upload a game file to the server. */
   @Post()
   @ApiOperation({
-    summary: "upload a game file to the server",
-    description: `Upload a game file directly to the game library. Only administrators can use this endpoint. The file must have a supported game file format. The server must have write permissions on the files volume.`,
+    summary: "上传游戏文件到服务器",
+    description: `直接上传游戏文件到游戏库。仅管理员可使用此端点。文件必须是支持的游戏文件格式。服务器必须对文件卷具有写入权限。`,
     operationId: "postGameUpload",
   })
   @ApiConsumes("multipart/form-data")
@@ -141,7 +141,7 @@ export class GamesController {
         validators: [
           new MaxFileSizeValidator({
             maxSize: configuration.GAMES.MAX_UPLOAD_SIZE,
-            message: `File exceeds maximum allowed upload size of ${bytes(configuration.GAMES.MAX_UPLOAD_SIZE, { unit: "GB", thousandsSeparator: "." })}.`,
+            message: `文件超过了最大允许上传大小 ${bytes(configuration.GAMES.MAX_UPLOAD_SIZE, { unit: "GB", thousandsSeparator: "." })}。`,
           }),
         ],
       }),
@@ -156,7 +156,7 @@ export class GamesController {
   @PaginateQueryOptions()
   @ApiOkResponsePaginated(GamevaultGame)
   @ApiOperation({
-    summary: "get a list of games",
+    summary: "获取游戏列表",
     operationId: "getGames",
   })
   @MinimumRole(Role.GUEST)
@@ -319,7 +319,7 @@ export class GamesController {
   /** Retrieves a random game */
   @Get("random")
   @ApiOperation({
-    summary: "get a random game",
+    summary: "获取随机游戏",
     operationId: "getGameRandom",
   })
   @ApiOkResponse({ type: () => GamevaultGame })
@@ -339,7 +339,7 @@ export class GamesController {
   /** Retrieves details for a game with the specified ID. */
   @Get(":game_id")
   @ApiOperation({
-    summary: "get details on a game",
+    summary: "获取游戏详情",
     operationId: "getGameByGameId",
   })
   @ApiOkResponse({ type: () => GamevaultGame })
@@ -362,31 +362,31 @@ export class GamesController {
     name: "X-Download-Speed-Limit",
     required: false,
     description:
-      "This header lets you set the maximum download speed limit in kibibytes per second (kiB/s) for your request.  If the header is not present the download speed limit will be unlimited.",
+      "此请求头用于设置最大下载速度限制，单位为 KiB/s。如果未设置此请求头，下载速度将不受限制。",
     example: "1024",
   })
   @ApiHeader({
     name: "Range",
     required: false,
     description:
-      "This header lets you control the range of bytes to download. If the header is not present or not valid the entire file will be downloaded.",
+      "此请求头用于控制下载的字节范围。如果未设置此请求头或格式无效，将下载整个文件。",
     examples: {
       "bytes=0-1023": {
-        description: "Download the first 1024 bytes",
+        description: "下载前 1024 个字节",
         value: "bytes=-1023",
       },
       "bytes=1024-2047": {
-        description: "Download the bytes 1024 through 2047",
+        description: "下载第 1024 到 2047 个字节",
         value: "bytes=1024-2047",
       },
       "bytes=1024-": {
-        description: "Download the bytes 1024 through the end of the file",
+        description: "下载从第 1024 个字节到文件末尾的内容",
         value: "bytes=1024-",
       },
     },
   })
   @ApiOperation({
-    summary: "download a game",
+    summary: "下载游戏",
     operationId: "getGameDownload",
   })
   @MinimumRole(Role.USER)
@@ -418,7 +418,7 @@ export class GamesController {
 
   @Put(":game_id")
   @ApiOperation({
-    summary: "updates the details of a game",
+    summary: "更新游戏详情",
     operationId: "putGameUpdate",
   })
   @ApiBody({ type: () => UpdateGameDto })

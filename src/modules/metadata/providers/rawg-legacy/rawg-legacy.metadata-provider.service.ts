@@ -11,7 +11,7 @@ export class RawgLegacyMetadataProviderService extends MetadataProvider {
   readonly slug = "rawg-legacy";
   readonly name = "RAWG (Legacy)";
   readonly noopMessage =
-    "The RAWG (Legacy) Metadata Provider does not support this functionality. It is designed solely for compatibility.";
+    "RAWG (Legacy) 元数据源不支持此功能。它仅用于兼容性目的。";
 
   public override async register() {
     this.metadataService.registerProvider(this);

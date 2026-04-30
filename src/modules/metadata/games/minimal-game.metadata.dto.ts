@@ -14,37 +14,37 @@ export class MinimalGameMetadataDto {
   })
   @ApiProperty({
     description:
-      "slug (url-friendly name) of the provider. This is the primary identifier. Must be formatted like a valid slug.",
+      "提供商的 slug（URL 友好名称）。这是主要标识符，必须符合有效的 slug 格式。",
     example: "igdb",
   })
   provider_slug: string;
 
   @ApiPropertyOptional({
-    description: "id of the game from the provider",
+    description: "提供商的游戏 ID",
     example: "Grand Theft Auto V",
   })
   provider_data_id?: string;
 
   @ApiProperty({
-    description: "title of the game",
+    description: "游戏标题",
     example: "Grand Theft Auto V",
   })
   title: string;
 
   @ApiPropertyOptional({
-    description: "release date of the game",
+    description: "游戏的发布日期",
     example: "2013-09-17T00:00:00.000Z",
   })
   release_date?: Date;
 
   @ApiPropertyOptional({
-    description: "box image url of the game",
+    description: "游戏的封面图片 URL",
     example: "example.com/example.jpg",
   })
   cover_url?: string;
 
   @ApiPropertyOptional({
-    description: "description of the game. markdown supported.",
+    description: "游戏描述，支持 Markdown 格式",
     example:
       "An open world action-adventure video game developed by **Rockstar North** and published by **Rockstar Games**.",
   })

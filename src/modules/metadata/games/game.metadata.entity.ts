@@ -38,7 +38,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
   })
   @ApiProperty({
     description:
-      "slug (url-friendly name) of the provider. This is the primary identifier. Must be formatted like a valid slug.",
+      "提供商的 slug（URL 友好名称）。这是主要标识符，必须符合有效的 slug 格式。",
     example: "igdb",
   })
   provider_slug?: string;
@@ -46,14 +46,14 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
   @Column({ nullable: true })
   @Index()
   @ApiPropertyOptional({
-    description: "id of the game from the provider",
+    description: "提供商的游戏 ID",
     example: "Grand Theft Auto V",
   })
   provider_data_id?: string;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "url of the game from the provider",
+    description: "提供商的游戏 URL",
     example: "https://www.igdb.com/games/grand-theft-auto-v",
     pattern: "url",
   })
@@ -61,7 +61,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "optional priority override for this metadata",
+    description: "此元数据的可选优先级覆盖",
     example: 1,
   })
   provider_priority?: number;
@@ -70,7 +70,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
 
   @Column({ type: "int", nullable: true })
   @ApiPropertyOptional({
-    description: "the minimum age required to play the game",
+    description: "游戏的最低年龄要求",
     example: 18,
     default: 0,
   })
@@ -79,7 +79,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
   @Column({ nullable: true })
   @Index()
   @ApiProperty({
-    description: "title of the game",
+    description: "游戏标题",
     example: "Grand Theft Auto V",
   })
   title?: string;
@@ -87,14 +87,14 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
   @Index()
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "release date of the game",
+    description: "游戏的发布日期",
     example: "2013-09-17T00:00:00.000Z",
   })
   release_date?: Date;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "description of the game. markdown supported.",
+    description: "游戏描述，支持 Markdown 格式",
     example:
       "An open world action-adventure video game developed by **Rockstar North** and published by **Rockstar Games**.",
   })
@@ -103,14 +103,14 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
   @Column({ nullable: true })
   @ApiPropertyOptional({
     description:
-      "public notes from the admin for the game. markdown supported.",
+      "管理员对游戏的公开备注，支持 Markdown 格式",
     example: "# README \n Install other game first!",
   })
   notes?: string;
 
   @Column({ type: "int", nullable: true })
   @ApiPropertyOptional({
-    description: "average playtime of other people in the game in minutes",
+    description: "其他玩家在该游戏中的平均游玩时间（分钟）",
     example: 180,
   })
   average_playtime?: number;
@@ -122,7 +122,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
   })
   @JoinColumn()
   @ApiPropertyOptional({
-    description: "cover/boxart image of the game",
+    description: "游戏的封面/包装图片",
     type: () => Media,
   })
   cover?: Media;
@@ -134,14 +134,14 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
   })
   @JoinColumn()
   @ApiPropertyOptional({
-    description: "background image of the game",
+    description: "游戏的背景图片",
     type: () => Media,
   })
   background?: Media;
 
   @Column({ type: "simple-array", nullable: true })
   @ApiPropertyOptional({
-    description: "URLs of externally hosted screenshots of the game",
+    description: "游戏的外部托管截图 URL 列表",
     type: () => String,
     isArray: true,
   })
@@ -149,7 +149,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
 
   @Column({ type: "simple-array", nullable: true })
   @ApiPropertyOptional({
-    description: "URLs of externally hosted trailer videos of the game",
+    description: "游戏的外部托管预告片视频 URL 列表",
     type: () => String,
     isArray: true,
   })
@@ -157,7 +157,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
 
   @Column({ type: "simple-array", nullable: true })
   @ApiPropertyOptional({
-    description: "URLs of externally hosted gameplay videos of the game",
+    description: "游戏的外部托管实况视频 URL 列表",
     type: () => String,
     isArray: true,
   })
@@ -165,7 +165,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
 
   @Column({ type: "simple-array", nullable: true })
   @ApiPropertyOptional({
-    description: "URLs of websites of the game",
+    description: "游戏的网站 URL 列表",
     example: "https://escapefromtarkov.com",
     type: () => String,
     isArray: true,
@@ -174,28 +174,28 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
 
   @Column({ type: "float", nullable: true })
   @ApiPropertyOptional({
-    description: "rating of the provider",
+    description: "提供商的评分",
     example: 90,
   })
   rating?: number;
 
   @Column({ nullable: true })
   @ApiProperty({
-    description: "indicates if the game is in early access",
+    description: "指示该游戏是否处于抢先体验阶段",
     example: true,
   })
   early_access?: boolean;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "Predefined launch parameters for the game.",
+    description: "游戏的预设启动参数",
     example: "-fullscreen -dx11",
   })
   launch_parameters?: string;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "Predefined launch executable for the game.",
+    description: "游戏的预设启动可执行文件",
     example: "ShooterGame.exe",
   })
   launch_executable?: string;
@@ -203,28 +203,28 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
   @Column({ nullable: true })
   @ApiPropertyOptional({
     description:
-      "Predefined installer parameters for the game. You can use %INSTALLDIR% as a placeholder for the installation directory.",
+      "游戏的预设安装程序参数。可以使用 %INSTALLDIR% 作为安装目录的占位符。",
     example: '/D="%INSTALLDIR%" /S /DIR="%INSTALLDIR%" /SILENT',
   })
   installer_parameters?: string;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "Predefined installer executable for the game.",
+    description: "游戏的预设安装可执行文件",
     example: "setup.exe",
   })
   installer_executable?: string;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "Predefined uninstaller parameters for the game.",
+    description: "游戏的预设卸载程序参数",
     example: "/SILENT",
   })
   uninstaller_parameters?: string;
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description: "Predefined uninstaller executable for the game.",
+    description: "游戏的预设卸载可执行文件",
     example: "uninst.exe",
   })
   uninstaller_executable?: string;
@@ -244,7 +244,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
     eager: true,
   })
   @ApiPropertyOptional({
-    description: "publishers of the game",
+    description: "游戏的发行商",
     type: () => PublisherMetadata,
     isArray: true,
   })
@@ -265,7 +265,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
     eager: true,
   })
   @ApiPropertyOptional({
-    description: "developers of the game",
+    description: "游戏的开发商",
     type: () => DeveloperMetadata,
     isArray: true,
   })
@@ -286,7 +286,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
     eager: true,
   })
   @ApiPropertyOptional({
-    description: "tags of the game",
+    description: "游戏的标签",
     type: () => TagMetadata,
     isArray: true,
   })
@@ -307,7 +307,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
     eager: true,
   })
   @ApiPropertyOptional({
-    description: "genres of the game",
+    description: "游戏的类型",
     type: () => GenreMetadata,
     isArray: true,
   })

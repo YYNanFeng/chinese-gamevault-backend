@@ -67,7 +67,7 @@ export class AuthorizationGuard implements CanActivate {
 
     if (userRole < requiredRole) {
       throw new ForbiddenException(
-        `Authorization Failed: Insufficient Role. You need to be '${Role[requiredRole]}' to do this, but you are a '${Role[userRole]}'.`,
+        `授权失败：权限不足。您需要是"${Role[requiredRole]}"才能执行此操作，但您是"${Role[userRole]}"。`,
       );
     }
     return true;

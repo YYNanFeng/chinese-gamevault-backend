@@ -34,7 +34,7 @@ export class MediaService {
   public async isAvailable(id: number): Promise<boolean> {
     try {
       if (!id) {
-        throw new NotFoundException("No media id given!");
+        throw new NotFoundException("未提供媒体 ID！");
       }
       await this.findOneByMediaIdOrFail(id);
       return true;
@@ -50,11 +50,11 @@ export class MediaService {
         !((await pathExists(media.file_path)) || this.config.TESTING.MOCK_FILES)
       ) {
         await this.delete(media);
-        throw new NotFoundException("Media not found on filesystem.");
+        throw new NotFoundException("媒体文件在文件系统上未找到。");
       }
       return media;
     } catch (error) {
-      throw new NotFoundException(`Media with id ${id} was not found.`, {
+      throw new NotFoundException(`ID 为 ${id} 的媒体未找到。`, {
         cause: error,
       });
     }
@@ -98,7 +98,7 @@ export class MediaService {
         await this.delete(media);
       }
       throw new InternalServerErrorException(
-        `Failed to download media from '${sourceUrl}'.`,
+        `从 '${sourceUrl}' 下载媒体失败。`,
         { cause: error },
       );
     }
@@ -188,7 +188,7 @@ export class MediaService {
     } catch (error) {
       await this.delete(media);
       throw new InternalServerErrorException(
-        "Error uploading media. Please retry or use a different file.",
+        "上传媒体时出错，请重试或使用其他文件。",
         { cause: error },
       );
     }
@@ -207,13 +207,13 @@ export class MediaService {
     if (!type?.extension || !type?.mimeType) {
       throw new BadRequestException(
         errorContextObject,
-        "File type could not be detected. Please use a different file.",
+        "无法检测文件类型，请使用其他文件。",
       );
     }
     if (!this.config.MEDIA.SUPPORTED_FORMATS.includes(type.mimeType)) {
       throw new BadRequestException(
         errorContextObject,
-        `This file is a "${type.mimeType}", which is not supported.`,
+        `该文件是 "${type.mimeType}" 格式，不受支持。`,
       );
     }
     return type;

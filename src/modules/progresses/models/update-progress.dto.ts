@@ -9,7 +9,7 @@ export class UpdateProgressDto {
   @IsNotEmpty()
   @ApiPropertyOptional({
     description:
-      "minutes of progress in the game by the user, this can only be incremented or be equal to the current value",
+      "用户在游戏中的游玩分钟数，只能递增或等于当前值",
     example: 22,
   })
   minutes_played: number;
@@ -18,7 +18,7 @@ export class UpdateProgressDto {
   @IsEnum(State)
   @IsNotEmpty()
   @ApiPropertyOptional({
-    description: "the new state of the game progress",
+    description: "游戏进度的新状态",
     type: "string",
     enum: State,
     example: State.PLAYING,

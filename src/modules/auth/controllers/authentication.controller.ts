@@ -36,9 +36,9 @@ export class GamevaultJwtController {
   @UseGuards(RefreshTokenGuard)
   @SkipGuards()
   @ApiOperation({
-    summary: "Refreshes the access token and extends the refresh token",
+    summary: "刷新访问令牌并延长刷新令牌",
     description:
-      "This endpoint takes a valid refresh token and issues new access and refresh tokens. The existing session is updated with the new refresh token hash and extended expiration time. The refresh token must be sent in the Authorization header.",
+      "此端点接收有效的刷新令牌并签发新的访问令牌和刷新令牌。现有会话将使用新的刷新令牌哈希和延长的过期时间进行更新。刷新令牌必须在 Authorization 请求头中发送。",
     operationId: "postAuthRefresh",
   })
   @ApiOkResponse({ type: () => TokenPairDto })
@@ -52,7 +52,7 @@ export class GamevaultJwtController {
   ): Promise<TokenPairDto> {
     const refreshToken = req.headers.authorization?.replace("Bearer ", "");
     if (!refreshToken) {
-      throw new BadRequestException("No refresh token provided");
+      throw new BadRequestException("未提供刷新令牌");
     }
     return this.authService.refresh(
       req.user,
@@ -66,9 +66,9 @@ export class GamevaultJwtController {
   @ApiBody({ type: () => RefreshTokenDto })
   @SkipGuards()
   @ApiOperation({
-    summary: "Revokes a specific refresh token",
+    summary: "撤销指定的刷新令牌",
     description:
-      "This endpoint takes a refresh token and marks its associated session as revoked. The refresh token must be sent in the request body. Once revoked, the token cannot be used to refresh access tokens.",
+      "此端点接收一个刷新令牌并将关联的会话标记为已撤销。刷新令牌必须在请求体中发送。一旦撤销，该令牌将无法用于刷新访问令牌。",
     operationId: "postAuthRevoke",
   })
   async postAuthRevoke(
@@ -79,9 +79,9 @@ export class GamevaultJwtController {
 
   @Get("sessions")
   @ApiOperation({
-    summary: "Get all active sessions for the current user",
+    summary: "获取当前用户的所有活跃会话",
     description:
-      "Returns a list of all active sessions for the authenticated user. A session is considered active if it is not revoked and not expired. Each session includes information about the device (IP address and user agent) where it was created.",
+      "返回已认证用户的所有活跃会话列表。未撤销且未过期的会话被视为活跃会话。每个会话包含创建会话的设备信息（IP 地址和用户代理）。",
     operationId: "getAuthSessions",
   })
   @ApiOkResponse({ type: () => Session, isArray: true })
@@ -93,9 +93,9 @@ export class GamevaultJwtController {
 
   @Post("revoke/all")
   @ApiOperation({
-    summary: "Revoke all active sessions for the current user",
+    summary: "撤销当前用户的所有活跃会话",
     description:
-      "Revokes all active sessions for the authenticated user. This effectively logs the user out from all devices. A session is considered active if it is not revoked and not expired. The user will need to log in again to create new sessions.",
+      "撤销已认证用户的所有活跃会话。这将使用户在所有设备上登出。未撤销且未过期的会话被视为活跃会话。用户需要重新登录以创建新的会话。",
     operationId: "postAuthRevokeAll",
   })
   async postAuthRevokeAll(

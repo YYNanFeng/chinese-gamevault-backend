@@ -39,9 +39,9 @@ export class BasicAuthController {
   @Get("login")
   @SkipGuards()
   @ApiOperation({
-    summary: "Performs a basic auth login using the provided user credentials",
+    summary: "使用提供的用户凭证进行基本认证登录",
     description:
-      "Initiates a login process by validating the user and issuing a bearer token.",
+      "通过验证用户并签发 Bearer 令牌来发起登录流程。",
     operationId: "getAuthBasicLogin",
   })
   @ApiOkResponse({ type: () => TokenPairDto })
@@ -72,9 +72,9 @@ export class BasicAuthController {
   /** Register a new user. */
   @Post("register")
   @ApiOperation({
-    summary: "register a new user",
+    summary: "注册新用户",
     description:
-      "The user may has to be activated afterwards to be active. This endpoint only works if registration is enabled",
+      "用户注册后可能需要激活才能使用。此端点仅在启用注册时可用。",
     operationId: "postAuthBasicRegister",
   })
   @ApiOkResponse({ type: () => GamevaultUser })
@@ -90,7 +90,7 @@ export class BasicAuthController {
       (req.user?.role ?? 0) < Role.ADMIN
     ) {
       throw new MethodNotAllowedException(
-        "Self-Registration is disabled on this server. Contact an Administrator to register a new user.",
+        "此服务器已禁用自助注册。请联系管理员注册新用户。",
       );
     }
     return this.authenticationService.register(dto);

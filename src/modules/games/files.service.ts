@@ -137,13 +137,13 @@ export class FilesService implements OnApplicationBootstrap {
 
     if (!game.file_path) {
       throw new NotFoundException(
-        `Game with id ${gameId} has no file path associated.`,
+        `ID 为 ${gameId} 的游戏没有关联的文件路径。`,
       );
     }
 
     if (!(await pathExists(game.file_path))) {
       throw new NotFoundException(
-        `Game file not found on disk at "${game.file_path}".`,
+        `在磁盘上未找到游戏文件 "${game.file_path}"。`,
       );
     }
 
@@ -152,7 +152,7 @@ export class FilesService implements OnApplicationBootstrap {
       await access(configuration.VOLUMES.FILES, constants.W_OK);
     } catch {
       throw new BadRequestException(
-        `The server does not have write permissions on the files volume "${configuration.VOLUMES.FILES}". Game deletion requires write access.`,
+        `服务器对文件卷 "${configuration.VOLUMES.FILES}" 没有写入权限。删除游戏需要写入权限。`,
       );
     }
 
@@ -174,14 +174,14 @@ export class FilesService implements OnApplicationBootstrap {
 
     if (!filename) {
       throw new BadRequestException(
-        "The uploaded file has an invalid filename.",
+        "上传的文件名无效。",
       );
     }
 
     const ext = toLower(path.extname(filename));
     if (!this.supportedFormatsSet.has(ext)) {
       throw new BadRequestException(
-        `Unsupported file format "${ext}". Supported formats: ${Array.from(this.supportedFormatsSet).join(", ")}`,
+        `不支持的文件格式 "${ext}"。支持的格式：${Array.from(this.supportedFormatsSet).join(", ")}`,
       );
     }
 
@@ -190,7 +190,7 @@ export class FilesService implements OnApplicationBootstrap {
       await access(configuration.VOLUMES.FILES, constants.W_OK);
     } catch {
       throw new BadRequestException(
-        `The server does not have write permissions on the files volume "${configuration.VOLUMES.FILES}". Game upload requires write access.`,
+        `服务器对文件卷 "${configuration.VOLUMES.FILES}" 没有写入权限。上传游戏需要写入权限。`,
       );
     }
 
@@ -199,7 +199,7 @@ export class FilesService implements OnApplicationBootstrap {
     // Prevent overwriting existing files
     if (await pathExists(targetPath)) {
       throw new BadRequestException(
-        `A file named "${filename}" already exists in the game library.`,
+        `名为 "${filename}" 的文件已存在于游戏库中。`,
       );
     }
 
@@ -634,7 +634,7 @@ export class FilesService implements OnApplicationBootstrap {
   private async archive(output: string, sourcePath: string): Promise<void> {
     if (!(await pathExists(sourcePath))) {
       throw new NotFoundException(
-        `The game file "${sourcePath}" could not be found.`,
+        `找不到游戏文件 "${sourcePath}"。`,
       );
     }
     return new Promise<void>((resolve, reject) => {
@@ -869,7 +869,7 @@ export class FilesService implements OnApplicationBootstrap {
     // If the file does not exist, throw an exception.
     if (!(await pathExists(fileDownloadPath))) {
       throw new NotFoundException(
-        `The game file "${fileDownloadPath}" could not be found.`,
+        `找不到游戏文件 "${fileDownloadPath}"。`,
       );
     }
 
