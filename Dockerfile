@@ -15,6 +15,8 @@ ENV TZ="Etc/UTC" \
 
 # Create necessary directories with appropriate permissions
 RUN mkdir -p /config /files /media /logs /db /plugins /savefiles \
+    # Switch to Chinese mirror for Debian packages (solve network issues in China)
+    && sed -i 's|deb.debian.org|mirrors.aliyun.com|g; s|security.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources \
     # Enable non-free and contrib repositories for Debian-based package installations
     && sed -i -e 's/ main/ main non-free non-free-firmware contrib/g' /etc/apt/sources.list.d/debian.sources \
     # Update package list and install necessary dependencies
@@ -38,8 +40,8 @@ RUN mkdir -p /config /files /media /logs /db /plugins /savefiles \
     && apt install -y --no-install-recommends postgresql-client-$(apt-cache search --names-only '^postgresql-client-[0-9]+$' | sort -t'-' -k3 -n | tail -1 | grep -oP '\d+$') \
     # Clean up to reduce image size
     && apt clean && rm -rf /var/lib/apt/lists/* \
-    # Install PNPM package manager globally
-    && npm i -g pnpm@^10.29.3
+    # Install PNPM package manager globally (use Chinese npm mirror)
+    && npm i -g pnpm@^10.29.3 --registry=https://registry.npmmirror.com
 
 # Set working directory for the application
 WORKDIR /app
@@ -49,7 +51,7 @@ FROM base AS build
 
 # Copy dependency files and install dependencies
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --registry=https://registry.npmmirror.com
 
 # Copy application source code and build the project
 COPY . .
@@ -60,7 +62,7 @@ FROM base AS prod-deps
 
 # Copy dependency files and install only production dependencies
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --prod --frozen-lockfile
+RUN pnpm install --prod --frozen-lockfile --registry=https://registry.npmmirror.com
 
 # ---- Release Stage ----
 FROM base AS release
