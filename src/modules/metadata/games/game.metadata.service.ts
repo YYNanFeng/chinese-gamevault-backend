@@ -66,10 +66,9 @@ export class GameMetadataService {
         relationLoadStrategy: "query",
       });
     } catch (error) {
-      throw new NotFoundException(
-        `服务器上未找到 ID 为 ${id} 的游戏元数据。`,
-        { cause: error },
-      );
+      throw new NotFoundException(`服务器上未找到 ID 为 ${id} 的游戏元数据。`, {
+        cause: error,
+      });
     }
   }
 

@@ -209,7 +209,7 @@ describe("ApiKeyGuard", () => {
     const client = ctx.switchToWs().getClient();
     expect(client.emit).toHaveBeenCalledWith(
       "exception",
-      expect.objectContaining({ message: "Unauthorized" }),
+      expect.objectContaining({ message: "未授权" }),
     );
   });
 });

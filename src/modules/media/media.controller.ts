@@ -68,8 +68,7 @@ export class MediaController {
   @Post()
   @ApiOperation({
     summary: "上传媒体文件到服务器",
-    description:
-      "您可以在后续请求中使用上传媒体的 ID。",
+    description: "您可以在后续请求中使用上传媒体的 ID。",
     operationId: "postMedia",
   })
   @ApiConsumes("multipart/form-data")

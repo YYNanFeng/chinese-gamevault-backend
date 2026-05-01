@@ -64,7 +64,7 @@ describe("DisableApiIfInterceptor", () => {
     } catch (e) {
       expect(e).toBeInstanceOf(MethodNotAllowedException);
       expect((e as MethodNotAllowedException).message).toBe(
-        "This API endpoint is disabled.",
+        "此 API 端点已被禁用。",
       );
     }
   });

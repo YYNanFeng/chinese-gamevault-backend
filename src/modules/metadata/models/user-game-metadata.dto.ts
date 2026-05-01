@@ -43,8 +43,7 @@ export class UpdateGameUserMetadataDto {
   @IsString()
   @IsNotEmpty()
   @ApiPropertyOptional({
-    description:
-      "游戏的排序标题，用于优化排序",
+    description: "游戏的排序标题，用于优化排序",
     example: "grand theft auto 5",
   })
   sort_title?: string;
@@ -69,8 +68,7 @@ export class UpdateGameUserMetadataDto {
   description?: string;
 
   @ApiPropertyOptional({
-    description:
-      "管理员对游戏的公开备注，支持 Markdown 格式",
+    description: "管理员对游戏的公开备注，支持 Markdown 格式",
     example: "# README \n Install other game first!",
   })
   @IsOptional()

@@ -417,7 +417,7 @@ describe("UsersService", () => {
       userRepository.findOneOrFail.mockResolvedValue(mockUser);
       await expect(
         service.findUserForAuthOrFail({ username: "testuser" }),
-      ).rejects.toThrow("Authentication Failed: User has been deleted");
+      ).rejects.toThrow("认证失败：用户已被删除");
     });
 
     it("should throw NotAcceptableException for inactive non-admin user", async () => {
@@ -429,7 +429,7 @@ describe("UsersService", () => {
       userRepository.findOneOrFail.mockResolvedValue(mockUser);
       await expect(
         service.findUserForAuthOrFail({ username: "testuser" }),
-      ).rejects.toThrow("Authorization Failed: User is not activated");
+      ).rejects.toThrow("授权失败：用户未激活");
     });
   });
 });

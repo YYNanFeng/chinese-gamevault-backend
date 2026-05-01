@@ -109,8 +109,7 @@ export class SavefileController {
   @Get("/user/:user_id/game/:game_id")
   @ApiOperation({
     summary: "从服务器下载存档文件",
-    description:
-      "仅管理员或与存档关联的用户可以下载游戏存档文件。",
+    description: "仅管理员或与存档关联的用户可以下载游戏存档文件。",
     operationId: "getSaveFileByUserIdAndGameId",
   })
   @ApiOkResponse({
@@ -136,8 +135,7 @@ export class SavefileController {
   @Delete("/user/:user_id/game/:game_id")
   @ApiOperation({
     summary: "从服务器删除存档文件",
-    description:
-      "仅管理员或与存档关联的用户可以删除游戏存档文件。",
+    description: "仅管理员或与存档关联的用户可以删除游戏存档文件。",
     operationId: "deleteSaveFileByUserIdAndGameId",
   })
   @DisableApiIf(

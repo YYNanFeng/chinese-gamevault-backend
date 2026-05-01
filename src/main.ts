@@ -124,17 +124,14 @@ async function bootstrap(): Promise<void> {
           .setTitle("GameVault 后端服务器")
           .setContact("Phalcode", "https://phalco.de", "contact@phalco.de")
           .setExternalDoc("Documentation", "https://gamevau.lt")
-          .setDescription(
-            "GameVault 后端，自托管的无 DRM 游戏平台",
-          )
+          .setDescription("GameVault 后端，自托管的无 DRM 游戏平台")
           .setVersion(configuration.SERVER.VERSION)
           .addBearerAuth(
             {
               type: "http",
               scheme: "bearer",
               bearerFormat: "JWT",
-              description:
-                "从 /api/auth/*/login 端点获取的访问令牌。",
+              description: "从 /api/auth/*/login 端点获取的访问令牌。",
             },
             "bearer",
           )
@@ -213,14 +210,10 @@ async function bootstrap(): Promise<void> {
   if (configuration.SERVER.HTTPS.ENABLED) {
     // Validate required HTTPS certificate paths
     if (!configuration.SERVER.HTTPS.KEY_PATH) {
-      throw new Error(
-        "启用 HTTPS 时必须设置 SERVER_HTTPS_KEY_PATH。",
-      );
+      throw new Error("启用 HTTPS 时必须设置 SERVER_HTTPS_KEY_PATH。");
     }
     if (!configuration.SERVER.HTTPS.CERT_PATH) {
-      throw new Error(
-        "启用 HTTPS 时必须设置 SERVER_HTTPS_CERT_PATH。",
-      );
+      throw new Error("启用 HTTPS 时必须设置 SERVER_HTTPS_CERT_PATH。");
     }
     const httpsOptions: Record<string, Buffer> = {
       key: readFileSync(configuration.SERVER.HTTPS.KEY_PATH),

@@ -8,8 +8,7 @@ export class UpdateProgressDto {
   @IsNumber()
   @IsNotEmpty()
   @ApiPropertyOptional({
-    description:
-      "用户在游戏中的游玩分钟数，只能递增或等于当前值",
+    description: "用户在游戏中的游玩分钟数，只能递增或等于当前值",
     example: 22,
   })
   minutes_played: number;

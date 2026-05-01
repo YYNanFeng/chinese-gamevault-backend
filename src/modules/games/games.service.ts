@@ -79,10 +79,9 @@ export class GamesService {
 
       return await this.gamesRepository.findOneOrFail(findParameters);
     } catch (error) {
-      throw new NotFoundException(
-        `Game with id ${id} was not found on the server.`,
-        { cause: error },
-      );
+      throw new NotFoundException(`服务器上未找到 ID 为 ${id} 的游戏。`, {
+        cause: error,
+      });
     }
   }
 

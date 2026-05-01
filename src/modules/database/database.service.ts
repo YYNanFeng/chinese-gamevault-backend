@@ -62,7 +62,7 @@ export class DatabaseService {
   async restore(file: Express.Multer.File, password: string) {
     if (this.config.TESTING.IN_MEMORY_DB) {
       throw new NotAcceptableException(
-        "This server can't restore backups as it uses an in-memory database.",
+        "此服务器使用内存数据库，无法恢复备份。",
       );
     }
 

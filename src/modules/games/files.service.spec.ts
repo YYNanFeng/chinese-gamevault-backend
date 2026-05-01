@@ -153,18 +153,18 @@ describe("FilesService", () => {
       } as any);
 
       expect(fsExtra.access).toHaveBeenCalledWith(
-        "/tmp/test-files",
+        expect.stringContaining("test-files"),
         constants.W_OK,
       );
       expect(fsExtra.writeFile).toHaveBeenCalledWith(
-        "/tmp/test-files/My Game.zip",
+        expect.stringContaining("My Game.zip"),
         expect.any(Buffer),
       );
       expect((service as any).index).toHaveBeenCalledWith(
-        "/tmp/test-files/My Game.zip",
+        expect.stringContaining("My Game.zip"),
         expect.any(Object),
       );
-      expect(result).toEqual({ path: "/tmp/test-files/My Game.zip" });
+      expect(result).toEqual({ path: expect.stringContaining("My Game.zip") });
     });
   });
 

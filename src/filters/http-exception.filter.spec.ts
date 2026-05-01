@@ -53,7 +53,7 @@ describe("LoggingExceptionFilter", () => {
     expect(mockResponse.json).toHaveBeenCalledWith(
       expect.objectContaining({
         statusCode: 500,
-        error: "Unhandled Server Error",
+        error: "未处理的服务器错误",
       }),
     );
   });
@@ -64,7 +64,7 @@ describe("LoggingExceptionFilter", () => {
     expect(mockResponse.status).toHaveBeenCalledWith(500);
     expect(mockResponse.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: expect.stringContaining("Unhandled Server Error"),
+        message: expect.stringContaining("未处理的服务器错误"),
       }),
     );
   });

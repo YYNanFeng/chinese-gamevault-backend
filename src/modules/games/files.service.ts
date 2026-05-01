@@ -136,9 +136,7 @@ export class FilesService implements OnApplicationBootstrap {
     });
 
     if (!game.file_path) {
-      throw new NotFoundException(
-        `ID 为 ${gameId} 的游戏没有关联的文件路径。`,
-      );
+      throw new NotFoundException(`ID 为 ${gameId} 的游戏没有关联的文件路径。`);
     }
 
     if (!(await pathExists(game.file_path))) {
@@ -173,9 +171,7 @@ export class FilesService implements OnApplicationBootstrap {
     const filename = filenameSanitizer(file.originalname);
 
     if (!filename) {
-      throw new BadRequestException(
-        "上传的文件名无效。",
-      );
+      throw new BadRequestException("上传的文件名无效。");
     }
 
     const ext = toLower(path.extname(filename));
@@ -633,9 +629,7 @@ export class FilesService implements OnApplicationBootstrap {
   /** Creates a compressed archive of the source path. */
   private async archive(output: string, sourcePath: string): Promise<void> {
     if (!(await pathExists(sourcePath))) {
-      throw new NotFoundException(
-        `找不到游戏文件 "${sourcePath}"。`,
-      );
+      throw new NotFoundException(`找不到游戏文件 "${sourcePath}"。`);
     }
     return new Promise<void>((resolve, reject) => {
       const archiveStream = add(output, sourcePath);
@@ -868,9 +862,7 @@ export class FilesService implements OnApplicationBootstrap {
 
     // If the file does not exist, throw an exception.
     if (!(await pathExists(fileDownloadPath))) {
-      throw new NotFoundException(
-        `找不到游戏文件 "${fileDownloadPath}"。`,
-      );
+      throw new NotFoundException(`找不到游戏文件 "${fileDownloadPath}"。`);
     }
 
     // Apply range header if provided otherwise returns the entire file

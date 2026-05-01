@@ -107,8 +107,7 @@ export class UpdateUserDto {
     type: "string",
     enum: Role,
     example: Role.EDITOR,
-    description:
-      "角色决定了用户在系统中的权限集合和访问权限。",
+    description: "角色决定了用户在系统中的权限集合和访问权限。",
   })
   public role?: Role;
 }

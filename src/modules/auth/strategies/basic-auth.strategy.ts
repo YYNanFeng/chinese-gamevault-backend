@@ -34,9 +34,7 @@ export class BasicAuthenticationStrategy extends PassportStrategy(
     request.user = cleanedUser;
 
     if (!(await compare(password, user.password))) {
-      throw new UnauthorizedException(
-        "认证失败：密码错误",
-      );
+      throw new UnauthorizedException("认证失败：密码错误");
     }
     return cleanedUser;
   }

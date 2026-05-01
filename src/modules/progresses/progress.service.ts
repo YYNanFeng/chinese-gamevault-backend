@@ -90,10 +90,9 @@ export class ProgressService implements OnApplicationBootstrap {
       }
       return await this.progressRepository.findOneOrFail(findParameters);
     } catch (error) {
-      throw new NotFoundException(
-        `ID 为 ${id} 的进度在服务器上未找到。`,
-        { cause: error },
-      );
+      throw new NotFoundException(`ID 为 ${id} 的进度在服务器上未找到。`, {
+        cause: error,
+      });
     }
   }
 

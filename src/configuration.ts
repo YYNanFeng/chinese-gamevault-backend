@@ -369,6 +369,26 @@ const configuration = {
       CLIENT_ID: resolveEnv("METADATA_IGDB_CLIENT_ID") || undefined,
       CLIENT_SECRET: resolveEnv("METADATA_IGDB_CLIENT_SECRET") || undefined,
     } as const,
+    BANGUMI: {
+      ENABLED: parseBooleanEnvVariable(
+        resolveEnv("METADATA_BANGUMI_ENABLED"),
+        true,
+      ),
+      PRIORITY: parseNumber(resolveEnv("METADATA_BANGUMI_PRIORITY"), 0),
+      REQUEST_INTERVAL_MS: parseNumber(
+        resolveEnv("METADATA_BANGUMI_REQUEST_INTERVAL_MS"),
+        500,
+      ),
+      ACCESS_TOKEN: resolveEnv("METADATA_BANGUMI_ACCESS_TOKEN") || undefined,
+      AGE_RATING_NSFW: parseNumber(
+        resolveEnv("METADATA_BANGUMI_AGE_RATING_NSFW"),
+        18,
+      ),
+      AGE_RATING_SFW: parseNumber(
+        resolveEnv("METADATA_BANGUMI_AGE_RATING_SFW"),
+        0,
+      ),
+    } as const,
   } as const,
   TESTING: {
     AUTHENTICATION_DISABLED: parseBooleanEnvVariable(
@@ -458,6 +478,10 @@ export function getCensoredConfiguration() {
     : null;
   censoredConfig.METADATA.IGDB.CLIENT_SECRET = censoredConfig.METADATA.IGDB
     .CLIENT_SECRET
+    ? "**REDACTED**"
+    : null;
+  censoredConfig.METADATA.BANGUMI.ACCESS_TOKEN = censoredConfig.METADATA.BANGUMI
+    .ACCESS_TOKEN
     ? "**REDACTED**"
     : null;
   censoredConfig.AUTH.SECRET = censoredConfig.AUTH.SECRET

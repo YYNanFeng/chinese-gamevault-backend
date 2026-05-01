@@ -102,8 +102,7 @@ export class GameMetadata extends DatabaseEntity implements Metadata {
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description:
-      "管理员对游戏的公开备注，支持 Markdown 格式",
+    description: "管理员对游戏的公开备注，支持 Markdown 格式",
     example: "# README \n Install other game first!",
   })
   notes?: string;

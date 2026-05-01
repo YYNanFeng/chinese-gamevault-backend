@@ -143,8 +143,7 @@ export class ProgressController {
   @Delete("/user/:user_id/game/:game_id")
   @ApiOperation({
     summary: "删除进度",
-    description:
-      "仅管理员或与该进度关联的用户可以删除进度。",
+    description: "仅管理员或与该进度关联的用户可以删除进度。",
     operationId: "deleteProgressByUserIdAndGameId",
   })
   @ApiOkResponse({ type: () => Progress })

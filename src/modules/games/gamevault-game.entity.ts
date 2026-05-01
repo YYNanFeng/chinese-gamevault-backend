@@ -22,8 +22,7 @@ export class GamevaultGame extends DatabaseEntity {
   @Index({ unique: true })
   @Column({ unique: true })
   @ApiPropertyOptional({
-    description:
-      "游戏或游戏清单的文件路径（相对于根目录）",
+    description: "游戏或游戏清单的文件路径（相对于根目录）",
     example: "/files/Action/Grand Theft Auto V (v1.0.0).zip",
   })
   file_path?: string;
@@ -55,8 +54,7 @@ export class GamevaultGame extends DatabaseEntity {
 
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description:
-      "游戏的排序标题，用于优化排序",
+    description: "游戏的排序标题，用于优化排序",
     example: "grand theft auto 5",
   })
   sort_title?: string;
@@ -71,16 +69,14 @@ export class GamevaultGame extends DatabaseEntity {
   @Index()
   @Column({ nullable: true })
   @ApiPropertyOptional({
-    description:
-      "游戏的发布日期（从文件名提取，例如 '(2013)'）",
+    description: "游戏的发布日期（从文件名提取，例如 '(2013)'）",
     example: "2013-01-01T00:00:00.000Z",
   })
   release_date?: Date;
 
   @Column({ default: false })
   @ApiPropertyOptional({
-    description:
-      "指示该游戏是否为抢先体验版本（从文件名提取，例如 '(EA)'）",
+    description: "指示该游戏是否为抢先体验版本（从文件名提取，例如 '(EA)'）",
     example: true,
     default: false,
   })
@@ -88,8 +84,7 @@ export class GamevaultGame extends DatabaseEntity {
 
   @Column({ default: 0 })
   @ApiPropertyOptional({
-    description:
-      "该游戏在本服务器上的下载次数",
+    description: "该游戏在本服务器上的下载次数",
     example: 10,
     default: 0,
   })

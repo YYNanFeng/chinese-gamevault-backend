@@ -40,8 +40,7 @@ export class BasicAuthController {
   @SkipGuards()
   @ApiOperation({
     summary: "使用提供的用户凭证进行基本认证登录",
-    description:
-      "通过验证用户并签发 Bearer 令牌来发起登录流程。",
+    description: "通过验证用户并签发 Bearer 令牌来发起登录流程。",
     operationId: "getAuthBasicLogin",
   })
   @ApiOkResponse({ type: () => TokenPairDto })
@@ -73,8 +72,7 @@ export class BasicAuthController {
   @Post("register")
   @ApiOperation({
     summary: "注册新用户",
-    description:
-      "用户注册后可能需要激活才能使用。此端点仅在启用注册时可用。",
+    description: "用户注册后可能需要激活才能使用。此端点仅在启用注册时可用。",
     operationId: "postAuthBasicRegister",
   })
   @ApiOkResponse({ type: () => GamevaultUser })

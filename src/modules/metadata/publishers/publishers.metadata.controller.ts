@@ -39,8 +39,7 @@ export class PublisherController {
   @Get()
   @ApiOperation({
     summary: "获取发行商列表",
-    description:
-      "默认情况下，列表按每个发行商发行的游戏数量排序。",
+    description: "默认情况下，列表按每个发行商发行的游戏数量排序。",
     operationId: "getPublishers",
   })
   @MinimumRole(Role.GUEST)

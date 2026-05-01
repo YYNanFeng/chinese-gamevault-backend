@@ -42,8 +42,7 @@ export class UsersController {
 
   @Get()
   @ApiOperation({
-    summary:
-      "获取所有用户概览。管理员可通过此端点查看隐藏用户。",
+    summary: "获取所有用户概览。管理员可通过此端点查看隐藏用户。",
     operationId: "getUsers",
   })
   @ApiOkResponse({ type: () => GamevaultUser, isArray: true })

@@ -43,8 +43,7 @@ export class LoggingExceptionFilter implements ExceptionFilter {
         error,
       });
       response.status(httpStatusCode).json({
-        message:
-          "未处理的服务器错误。请检查服务器日志以获取更多详情。",
+        message: "未处理的服务器错误。请检查服务器日志以获取更多详情。",
         error: "未处理的服务器错误",
         statusCode: httpStatusCode,
       });
