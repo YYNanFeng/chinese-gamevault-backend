@@ -19,7 +19,7 @@ interface GitHubRelease {
 export class WebUIService {
   private readonly logger = new Logger(this.constructor.name);
   private readonly githubApiUrl =
-    "https://api.github.com/repos/Phalcode/gamevault-frontend/releases";
+    "https://api.github.com/repos/YYNanFeng/chinese-gamevault-frontend/releases";
   private compatibleVersion = "";
 
   constructor(
@@ -176,7 +176,7 @@ export class WebUIService {
     version: string,
     forceRedownload = false,
   ): Promise<void> {
-    const downloadUrl = `https://github.com/Phalcode/gamevault-frontend/releases/download/${version}/gamevault-frontend.zip`;
+    const downloadUrl = `https://github.com/YYNanFeng/chinese-gamevault-frontend/releases/download/${version}/gamevault-frontend.zip`;
     const zipPath = join(this.cachePath, "gamevault-frontend.zip");
 
     if (!forceRedownload && (await this.isCached(version))) {
